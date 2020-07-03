@@ -2,17 +2,58 @@
 % Table of contents formatting
 \renewcommand{\contentsname}{Table of Contents}
 
+
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{0}
+
+
+
+\usepackage[left=1.5in,right=1.5in]{geometry}
+\setlength{\parskip}{12pt}
+
 % Headers and page numbering
 \usepackage{fancyhdr}
-\pagestyle{plain}
+\pagestyle{fancy}
+\lhead{  \leftmark}
+\rhead{\thepage}
 
 % Table package
 \usepackage{ctable}% http://ctan.org/pkg/ctable
+
+ \usepackage{titling}
+ \pretitle{\begin{flushleft}\Large\bfseries}
+  \posttitle{\end{flushleft}}
+  \preauthor{\begin{flushleft}\large}
+  \postauthor{\end{flushleft}}
+   \predate{\begin{flushleft}\large}
+ \postdate{\end{flushleft}}
+
 
 \usepackage{morefloats}
 % or use \extrafloats{100}
 % add some \clearpage
 
+\usepackage{sectsty}
+\usepackage[normalem]{ulem}
+\sectionfont{\rmfamily\bfseries\large}
+\subsectionfont{\rmfamily\mdseries\upshape\large}
+\subsubsectionfont{\rmfamily\mdseries\MakeUppercase\normalsize}
+
+% % Chapter header
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}{Chapter\ \thechapter}{0em}{
+    \vspace{-1em}
+}
+[
+\vspace{-2.8em}
+]
+
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
 
 % FONTS
 \fontsize 12
@@ -26,28 +67,6 @@
 \usepackage{color}
 \DeclareMathSizes{12}{13}{7}{7}
 
-% HEADINGS
-\usepackage{sectsty}
-\usepackage[normalem]{ulem}
-\sectionfont{\rmfamily\bfseries\large}
-\subsectionfont{\rmfamily\bfseries\upshape\large}
-\subsubsectionfont{\rmfamily\mdseries\MakeUppercase\normalsize}
-
-% % Chapter header
-\usepackage{titlesec, blindtext, color}
-\definecolor{gray75}{gray}{0.75}
-\newcommand{\hsp}{\hspace{20pt}}
-
-\titleformat{\chapter}[display]
-{\normalfont\Large\bfseries}{Chapter\ \thechapter}{0em}{
-    \vspace{-1em}
-}
-[
-\vspace{-2.8em}
-]
-
-\titlespacing*{\chapter}{0pt}{0pt}{40pt}
-
 
 \usepackage{lineno}
 
@@ -59,8 +78,7 @@
 \usepackage{setspace}
 \raggedbottom
 % Set margins
-\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
-\setlength{\parskip}{12pt}
+
 
 % Set colour of links to black so that they don't show up when printed
 \usepackage{hyperref}
