@@ -1,11 +1,8 @@
 ---
 title: Dissertation Prospectus
 author: M.D. Catchen
-
-header-includes: |
-    \patchcmd{\@maketitle}{\@title}{\fontsize{12}\@title}{}{}
+abstract:  here it is
 ---
-
 ---
 \pagebreak
 # Introduction
@@ -18,64 +15,71 @@ header-includes: |
 \pagebreak
 # Literature Overview
 
-- Spatial ecology Literature
-    - macarthur and wilson
-    - levins
-    - continuous space
-        - SDMs, lattices
-- Community ecology
-    - early dynamical models of communities
-        - LV, Levins, Macarthur and wilson
-    - Neutral
-        - hubbell and Neutral
-        - nearly neutral
-    - metacommunities
-        - early
-        - Poisot 2014
-        - Joint SDMS
-- Models, and what they can do
-    - inference, prediction, forecasting, estimation, hypothesis-testing
-    - what type of models have we seen in spatial and community ecology?
-        - determinstic, mechanistic models
-            - LV, TIBG, Classic Metapop Theory
-        - Off the shelf statistical tests
-    - what can simulation models do for spatial community ecology?
-        - complexity and stochasticity across scale
-        - higher sample size than experiments
-        - historically this has cons: parameter numbers, fitting complex models to data is difficult
-        - ABC
-            - simulation results as a likelihood function
-- What questions are relevant and remain unaddressed?
-    - Forecasting
-    - How do shifts in landscape structure affect biodiversity that can exist in that landscape?
+## Spatial Ecology Literature
+- MacArthur and Wilson
+- levins
+- continuous space
+    - SDMs, lattices
 
+## Community ecology
+- early dynamical models of communities
+    - LV, Levins, Macarthur and wilson
+- Neutral
+    - hubbell and Neutral
+    - nearly neutral
+- metacommunities
+    - early
+    - Poisot 2014
+    - Joint SDMS
+
+## Models, and what they can do
+- inference, prediction, forecasting, estimation, hypothesis-testing
+- what type of models have we seen in spatial and community ecology?
+    - determinstic, mechanistic models
+        - LV, TIBG, Classic Metapop Theory
+    - Off the shelf statistical tests
+- what can simulation models do for spatial community ecology?
+    - complexity and stochasticity across scale
+    - higher sample size than experiments
+    - historically this has cons: parameter numbers, fitting complex models to data is difficult
+    - ABC
+        - simulation results as a likelihood function
+        
+## What questions are relevant and remain unaddressed?
 
 Dang i'm just chillin
 
+- Forecasting
+- How do shifts in landscape structure affect biodiversity that can exist in that landscape?
 
 \pagebreak
-# The Model
+
+# Models and Data
 
 For models to interface with the world, they must make predictions, $y$ based on observables,
 $\hat{x}$ and parameter values $\theta$. $y = f(\hat{x}, \theta)$.
 
-Most models do this via a likelihood function, $\mathbb{L}(\hat{x}, \theta)$.
-In a frequentist world, the likelihood function is everywhere,
-maximum likelihood one of the most popular algorithms for estimating parameters in frequentist models.
+Example: a species distribution model maps environmental conditions, $\hat{x}$, to predictions about species occuarance, $y$.
+Yet, to fit this model y = $f(\hat{x}, \theta)$, we need some observed instances of both environmental conditions $\hat{x}$ and species
+occupancy $\hat{y}$ in order to estimate $\theta$.
+
+Then, we estimate $\theta$ using a variety of methods in both frequentist and Bayesian worlds,
+yet what the vast majority of these methods have in common is that they estimate $\theta$ by using a likelihood function,
+$\mathbb{L}(\hat{x}, \theta)$.
+
+In a frequentist world, the likelihood function is everywhere. Most off-the-shelf statistical 'tests' are simply
+a likelihood function that can be package a likelihood function maximum likelihood one of the most popular algorithms for estimating parameters in frequentist models.
 
 Similarly, in a Bayesian world, the likelihood function is essential to the application
 of Bayes' theorem to inference, i.e.
 
-$$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\hat{x})}{Pr(\theta)} = \frac{\mathbb{L}(\hat{x}, \theta)}{\int_\Omega Pr(\theta) d\Omega}$$
+$$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\hat{x})}{P(\theta)} = \frac{\mathbb{L}(\hat{x}, \theta)}{\int_\Omega P(\theta) d\Omega}$$
 
 
-It has long been difficult to describe a likelihood function for a
-stochastic model of a complex system. However, modern computational power enables us
-to simulate many replicates of stochastic simulation models, and via the central limit theorem,
-we can treat the distribution of simulation model outcomes as approaching the likelihood function
-as the number of replicates increases. This is the central premise of Approximate Bayesian Computation, which has
-seen extensive use in population genetics, and show much promise in ecology.
+Likelihood functions are in the realm of the analytic. Even for stochastic processes, we a limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
 
+
+It has long been difficult to describe a likelihood function for a stochastic model of a complex system. However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem, we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. This is the central premise of Approximate Bayesian Computation, which has seen extensive use in population genetics, and show much promise in ecology.
 
 Here we describe a model of metacommunity dynamics over time.
 
@@ -84,62 +88,96 @@ Here we describe a model of metacommunity dynamics over time.
 There is a distinction between observables and latent variables.
 
 ### Biotic
+
 - occupancy
 - traits, interactions
   - usually in a database, compiled from individual studies with different aims
     - lacking standardization - interaction
 
 ### Abiotic
+
 - remote sensing is essential to spatial ecology
 - occupancy
 - traits, interactions
-	- usually in a database, compiled from individual studies with different aims
-		- lacking standardization - interaction
-
+    - usually in a database, compiled from individual studies with different aims
+	- lacking standardization - interaction
 - What can we use models to infer?
-
 - Niche vs. Neutral
 	- environmental conditions and their relation to ranges and interactions
 	- dispersal and neutral colonization/extinction
 
-## Whats a convenient mathematical framework to write this down?
+\pagebreak
+# A Metacommunity Model
 
-Poisot 2014 model of interactoin networks
-- Environmental Conditions in space and time $E_i(x,t)$
-- Species Indicator (occupancy/abundance) in space and time $S_i(x,t)$
-- Traits in space and time $T_i(x,t)$
-- Interaction Network $A_{ij}(x,t)$
+Poisot 2014 model of interaction networks. Relates to the properties we can measure.
 
-For each location, $(x,y) \in \{(i,j) \in \mathbb{N}^{2}_{< L}\}$,
+## A Generative Model of Food-Web Topology
 
-$$S_i\big(\vec{x}, t\big) = f\bigg(S\big(\vec{x}, t-1\big)\bigg)$$
+- Brief review of the history of generative models of food-web topology
+  - May, stability and complexity
+  - cascade model, using one dimensional niche space, a proxy for allometric scaling
+  - niche model
+  - allesina, likelihood function to infer niche model parameters from real food webs
+    - a way to generate food-webs with similar topogogical structure to an empirical web, to use simulation to make statesment about stability
 
-### differential
+Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin{bmatrix} A_{ij} \end{bmatrix}$, where $$A_{ij} = \begin{cases}1 \quad\quad& \text{if interaction is possible} \\ 0 & \text{otherwise}\end{cases}$$
 
-$$ f_i(\vec{S}) = S_i + \Delta t \bigg[\sum_j S_i [M(\vec{S})]_{ij} \bigg] $$
+## Thermodynamic Community Model
 
-where $M(\vec{S})$ describes energy dynamics on the metaweb.
+Ecology has long struggled to find generality. There are invariants/constraints in community ecology, so lets use them.
 
-### summarizing community structure
+- Biomass distribution across species, $\vec{B}(t)$.
+- Bioenergetic model $\frac{\partial B}{\partial t}$, Grilli et al and history.
+- Species trait distributions
+  - $T_i(t, \vec{x})$.
+- Interaction potential $$[ \Phi_{ij}  ] = f(\vec{T}, \vec{B})$$
 
-how do we summarize community structure in a lattice? summary metric, $g(\vec{x}, \vec{S}, t)$, which describes community structure in each cell
+
+
+## Spatial Model
+
+- spatial grpah or a lattice,
+- $\vec{x} \in X$
+- how does $x_i$ affect $x_j$? dispersal potential
+- $E_i(t,x)$ spatial distribution of environmental variable / habitat suitability
+
+
+
+## Measuring Community Structure
+
+- $\hat{B}$ -- observed community at some time $t$ and some location $x_j$
+- types of measures of network structure
+  - $f(\hat{\hat{B}})$, singular
+  - $f(\hat{B}(x_j), \hat{B}(x_k))$, measure of difference between two networks
+
+
+\pagebreak
+# What does it do?
+- simulation can be used to explore the properties of complex systems on scales larger than can be observed.
+- using approx. bayes comp. to fit the results of complex simulation models to data  
 
 ## Major Questions
-
-- differentiating niche vs neutral processes in metacommunity assembly
+- differentiating niche vs neutral processes in metacommunity assembly, across spatial scale
 - critical transitions in community structure
-	- when we change strength of environmental factors
+	- when we change strength of environmental factors in shifting survivability/traits
 	- when we change dispersal (connectivity, etc)
 
-
-## What does it _do_?
-
+\pagebreak
 # Dissertation Outline
-##  **Chapter One** —
+##  Chapter One — A Review of the Metacommunity Literature
+-f
+
+##  Chapter Two — A Model of Metacommunity dynamics
 - f
 
-##  **Chapter Two** —
+##  Chapter Three
+- The effect topology on dynamics and community structure
 - f
 
-##  **Chapter Three** —
-- f
+##  Chapter Four
+- The effect of trait distributions on community dynamics across space
+
+
+##  Chapter Five
+- The effect of environmental variation and dispersal on metacommunity structure
+- Niche and neutral processes, when does it transition across space

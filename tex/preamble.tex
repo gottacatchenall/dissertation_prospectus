@@ -1,12 +1,8 @@
 
 % Table of contents formatting
-\renewcommand{\contentsname}{Table of Contents}
-
 
 \setcounter{secnumdepth}{1}
-\setcounter{tocdepth}{0}
-
-
+\addtocontents{toc}{\setcounter{tocdepth}{1}}
 
 \usepackage[left=1.5in,right=1.5in]{geometry}
 \setlength{\parskip}{12pt}
@@ -14,7 +10,7 @@
 % Headers and page numbering
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lhead{  \leftmark}
+\lhead{  \nouppercase  \leftmark}
 \rhead{\thepage}
 
 % Table package
@@ -36,7 +32,7 @@
 \usepackage{sectsty}
 \usepackage[normalem]{ulem}
 \sectionfont{\rmfamily\bfseries\large}
-\subsectionfont{\rmfamily\mdseries\upshape\large}
+\subsectionfont{\rmfamily\bfseries\centering\upshape\normalsize}
 \subsubsectionfont{\rmfamily\mdseries\MakeUppercase\normalsize}
 
 % % Chapter header

@@ -4,5 +4,4 @@ pandoc ./*.md \
   --template="./tex/template.tex" \
   -H "./tex/preamble.tex" \
   -N                    \
-  --toc                  \
   --verbose
