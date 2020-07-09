@@ -11,28 +11,72 @@ abstract:  here it is
 - Interactions within and across scales, Levin
 - Community ecology necessarily occurs in both space and time.
 - Ecosystems are inherently dynamical systems.
+- Ecosystems are complex systems
+  - Stochasticity is ubiquitous 
+- Complex systems evade the typical methods of analysis 
+
+
 
 \pagebreak
 # Literature Overview
 
 ## Spatial Ecology Literature
-- MacArthur and Wilson
-- levins
-- continuous space
-    - SDMs, lattices
+Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is foundational to both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology. 
 
-## Community ecology
+The theoretical construction of space used by @macarthur_and_wilson---a set of internally homogeneous 'islands', each variable in size and surrounded by inhospitable water/matrix, each either occupied or unoccupied by a particular species---has had deep impacts on many modern methods used to infer ecological patterns across space. Metapopulation theory, coined by @levins_metapop, describes a system of discrete 'patches', all either occupied/unoccupied. Modern occupancy models are rooted in this view of space: discrete observations at spatial coordinates, with environmental covariates.
+
+However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's surface can be used to estimate various properties about its surface. The properties used by both different satellites and different models varies widely in what they try to predict, from the level of coarse land cover categories to the presence of particular species. 
+
+From this, we can apply the metapopulation data--occupancy at points, with envrionmental data at points, to produce rasters that estimate species occupancy based on env data. These species distribution models: max ent, bioclim. what is the strength of env effects?
+
+There is a difference in scale in what this type of data it provides, what time period it covers, and what spatial resolution it has. This "resolution gap" is pervasive in most of the large-scale data sets ecologists try to use: species, etc.
+
+
+
+## Early Community ecology
 - early dynamical models of communities
+  
     - LV, Levins, Macarthur and wilson
 - Neutral
     - hubbell and Neutral
     - nearly neutral
-- metacommunities
-    - early
-    - Poisot 2014
-    - Joint SDMS
+    
+    
+
+## metacommunities
+
+- early
+  - The metacommunity concept as a 'network of networks'-- a spatial network, where each node represents a food web, itself a network (\cite{leibold_metacommunity_2004 , pillai_metacommunity_2011}).
+  
+  - cite -@pillai_metacommunity_2011
+  
+    Poisot 2014
+- Joint SDMS
+
+## Food Web Topology
+
+- Brief review of the history of generative models of food-web topology
+  - May, stability and complexity
+  - cascade model, using one dimensional niche space, a proxy for allometric scaling
+  - niche model
+  - allesina, likelihood function to infer niche model parameters from real food webs
+    - a way to generate food-webs with similar topogogical structure to an empirical web, to use simulation to make statesment about stability
+
+## Bioenergetic Community Models
+
+- the word 'bioenergetic' 
+- thermodynamics as a premise for community ecology
+
+- robert may etc
+- Brief review of the history of generative models of food-web topology
+  - May, stability and complexity
+  - cascade model, using one dimensional niche space, a proxy for allometric scaling
+  - niche model
+  - allesina, likelihood function to infer niche model parameters from real food webs
+    - a way to generate food-webs with similar topogogical structure to an empirical web, to use simulation to make statesment about stability
 
 ## Models, and what they can do
+
 - inference, prediction, forecasting, estimation, hypothesis-testing
 - what type of models have we seen in spatial and community ecology?
     - determinstic, mechanistic models
@@ -44,7 +88,7 @@ abstract:  here it is
     - historically this has cons: parameter numbers, fitting complex models to data is difficult
     - ABC
         - simulation results as a likelihood function
-        
+
 ## What questions are relevant and remain unaddressed?
 
 Dang i'm just chillin
@@ -75,8 +119,11 @@ of Bayes' theorem to inference, i.e.
 
 $$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\hat{x})}{P(\theta)} = \frac{\mathbb{L}(\hat{x}, \theta)}{\int_\Omega P(\theta) d\Omega}$$
 
+Likelihood functions are in the realm of the analytic.
 
-Likelihood functions are in the realm of the analytic. Even for stochastic processes, we a limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
+- emphasize numeric vs analytic 
+
+ For most stochastic processes, we a limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
 
 
 It has long been difficult to describe a likelihood function for a stochastic model of a complex system. However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem, we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. This is the central premise of Approximate Bayesian Computation, which has seen extensive use in population genetics, and show much promise in ecology.
@@ -113,12 +160,7 @@ Poisot 2014 model of interaction networks. Relates to the properties we can meas
 
 ## A Generative Model of Food-Web Topology
 
-- Brief review of the history of generative models of food-web topology
-  - May, stability and complexity
-  - cascade model, using one dimensional niche space, a proxy for allometric scaling
-  - niche model
-  - allesina, likelihood function to infer niche model parameters from real food webs
-    - a way to generate food-webs with similar topogogical structure to an empirical web, to use simulation to make statesment about stability
+- f
 
 Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin{bmatrix} A_{ij} \end{bmatrix}$, where $$A_{ij} = \begin{cases}1 \quad\quad& \text{if interaction is possible} \\ 0 & \text{otherwise}\end{cases}$$
 
@@ -136,7 +178,7 @@ Ecology has long struggled to find generality. There are invariants/constraints 
 
 ## Spatial Model
 
-- spatial grpah or a lattice,
+- spatial graph or a lattice,
 - $\vec{x} \in X$
 - how does $x_i$ affect $x_j$? dispersal potential
 - $E_i(t,x)$ spatial distribution of environmental variable / habitat suitability
@@ -147,14 +189,17 @@ Ecology has long struggled to find generality. There are invariants/constraints 
 
 - $\hat{B}$ -- observed community at some time $t$ and some location $x_j$
 - types of measures of network structure
-  - $f(\hat{\hat{B}})$, singular
-  - $f(\hat{B}(x_j), \hat{B}(x_k))$, measure of difference between two networks
+  - $f({\hat{B}})$, singular.
+    - a measure of $\alpha$-div
+    - most classic meausres, Shannon entropy, etc.
+  - $f(\hat{B}(x_j), \hat{B}(x_k))$, measure of difference between two networks, $\beta$-diversity
+  - $G(B)$ , measures of total structure across all locations (and times?),  $\gamma$-diversity
 
 
 \pagebreak
 # What does it do?
 - simulation can be used to explore the properties of complex systems on scales larger than can be observed.
-- using approx. bayes comp. to fit the results of complex simulation models to data  
+- using approx. Bayes comp. to fit the results of complex simulation models to data  
 
 ## Major Questions
 - differentiating niche vs neutral processes in metacommunity assembly, across spatial scale
