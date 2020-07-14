@@ -1,10 +1,10 @@
-pandoc ./*.md \
+pandoc ./tex/*.md \
   -o "./output.pdf" \
   --pdf-engine=xelatex \
   --biblatex \
-  --bibliography="./tex/refs.bib" \
-  --template="./tex/template.tex" \
+  --bibliography="./tex/renderer/refs.bib" \
+  --template="./tex/renderer/template.tex" \
   --reference-links \
-  -H "./tex/preamble.tex" \
- -N                    \
+  -H "./tex/renderer/preamble.tex" \
+  -N                    \
   --verbose

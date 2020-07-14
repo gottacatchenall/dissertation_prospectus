@@ -15,7 +15,9 @@ abstract:  here it is
   - Stochasticity is ubiquitous 
 - Complex systems evade the typical methods of analysis 
 
+ 'bioenergetic' 
 
+thermo
 
 \pagebreak
 # Literature Overview
@@ -33,7 +35,7 @@ There is a difference in scale in what this type of data it provides, what time 
 
 
 
-## Early Community ecology
+## Classical Community ecology
 - early dynamical models of communities
   
     - LV, Levins, Macarthur and wilson
@@ -55,6 +57,10 @@ There is a difference in scale in what this type of data it provides, what time 
 
 ## Food Web Topology
 
+The structure of food-webs has been one of the most studied topics in ecology over the last 50 years. 
+
+
+
 - Brief review of the history of generative models of food-web topology
   - May, stability and complexity
   - cascade model, using one dimensional niche space, a proxy for allometric scaling
@@ -64,7 +70,22 @@ There is a difference in scale in what this type of data it provides, what time 
 
 ## Bioenergetic Community Models
 
-- the word 'bioenergetic' 
+It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex is cause and outcome. 
+
+
+
+When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere. 
+
+
+
+
+
+
+
+It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one. 
+
+
+
 - thermodynamics as a premise for community ecology
 
 - robert may etc
