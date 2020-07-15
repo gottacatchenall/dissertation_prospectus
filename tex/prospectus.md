@@ -27,10 +27,10 @@ Ecological science is global endeavor, and by developing tools that are usable a
 - Community ecology necessarily occurs in both space and time.
 - Ecosystems are inherently dynamical systems.
 - Ecosystems are complex systems
-  - Stochasticity is ubiquitous 
-- Complex systems evade the typical methods of analysis 
+  - Stochasticity is ubiquitous
+- Complex systems evade the typical methods of analysis
 
- 'bioenergetic' 
+ 'bioenergetic'
 
 thermo
 
@@ -38,11 +38,11 @@ thermo
 # Literature Overview
 
 ## Spatial Ecology Literature
-Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is foundational to both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology. 
+Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is foundational to both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology.
 
 The theoretical construction of space used by @macarthur_and_wilson---a set of internally homogeneous 'islands', each variable in size and surrounded by inhospitable water/matrix, each either occupied or unoccupied by a particular species---has had deep impacts on many modern methods used to infer ecological patterns across space. Metapopulation theory, coined by @levins_metapop, describes a system of discrete 'patches', all either occupied/unoccupied. Modern occupancy models are rooted in this view of space: discrete observations at spatial coordinates, with environmental covariates.
 
-However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's surface can be used to estimate various properties about its surface. The properties used by both different satellites and different models varies widely in what they try to predict, from the level of coarse land cover categories to the presence of particular species. 
+However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's surface can be used to estimate various properties about its surface. The properties used by both different satellites and different models varies widely in what they try to predict, from the level of coarse land cover categories to the presence of particular species.
 
 From this, we can apply the metapopulation data--occupancy at points, with envrionmental data at points, to produce rasters that estimate species occupancy based on env data. These species distribution models: max ent, bioclim. what is the strength of env effects?
 
@@ -52,27 +52,27 @@ There is a difference in scale in what this type of data it provides, what time 
 
 ## Classical Community ecology
 - early dynamical models of communities
-  
+
     - LV, Levins, Macarthur and wilson
 - Neutral
     - hubbell and Neutral
     - nearly neutral
-    
-    
+
+
 
 ## metacommunities
 
 - early
   - The metacommunity concept as a 'network of networks'-- a spatial network, where each node represents a food web, itself a network (\cite{leibold_metacommunity_2004 , pillai_metacommunity_2011}).
-  
+
   - cite -@pillai_metacommunity_2011
-  
+
     Poisot 2014
 - Joint SDMS
 
 ## Food Web Topology
 
-The structure of food-webs has been one of the most studied topics in ecology over the last 50 years. 
+The structure of food-webs has been one of the most studied topics in ecology over the last 50 years.
 
 
 
@@ -85,11 +85,11 @@ The structure of food-webs has been one of the most studied topics in ecology ov
 
 ## Bioenergetic Community Models
 
-It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex is cause and outcome. 
+It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex is cause and outcome.
 
 
 
-When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere. 
+When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere.
 
 
 
@@ -97,7 +97,7 @@ When studying any system, one of the most powerful tools of inquiry is paying at
 
 
 
-It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one. 
+It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one.
 
 
 
@@ -157,7 +157,7 @@ $$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\hat{x})}{P(\theta)} = \fra
 
 Likelihood functions are in the realm of the analytic.
 
-- emphasize numeric vs analytic 
+- emphasize numeric vs analytic
 
  For most stochastic processes, we a limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
 
@@ -194,7 +194,7 @@ There is a distinction between observables and latent variables.
 
 Poisot 2014 model of interaction networks. Relates to the properties we can measure.
 
-Abstracting and modularity of a model. 
+Abstracting and modularity of a model.
 
 
 
@@ -203,16 +203,16 @@ Abstracting and modularity of a model.
 Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin{bmatrix} A_{ij} \end{bmatrix}$, where $$A_{ij} = \begin{cases}1 \quad\quad& \text{if interaction is possible} \\ 0 & \text{otherwise}\end{cases}$$
 
 - Niche Model, @williams_simple_2000
-  - $\theta_T$ : 
+  - $\theta_T$ :
     - number of species, $N_s$
     - connectance, $C$
-  - other parameters can represent structure, etc. allesina 
+  - other parameters can represent structure, etc. allesina
 - Generating a metaweb $A$ using the niche model with $\theta_T = \{ N_s, C \}$
   1. Define a value  $n_i$, corresponding to the value of species $i$'s location in the trophic niche space, $n_i \in [0,1]$.
     - For each species, $$n_i \sim U(0,1)$$
   2. Define, for each species $i$, a region $(l_i, u_i)$ on the interval  $[0,1]$ corresponding to the range of niche space which species $i$ eats. For convenience, call the midpoint of this interval $m_i$ and the radius of species $i$'s niche $r_i = \frac{u_i - l_i}{2}$'. via @williams_simple_2000, we know that if we set $E[r_i] = \frac{1}{2C}  - 1$. if $C \in [0,0.5]$, then $\beta \in [0, \infty]$.
     - For each species $$m_i \sim U(0, n_i) $$ $$r_i \sim \beta (a, b)$$ where $a = 1$ and $E[\beta(1, b)] =  \frac{1}{1 + b}$
-  
+
   3. $$A_{ij} = \begin{cases} 1 \quad\quad&\text{if}\  n_j \in (l_i, u_i) \\ 0 &\text{else} \end{cases}$$
 
 ## Thermodynamic Community Model
@@ -220,12 +220,13 @@ Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin
 Ecology has long struggled to find generality. There are invariants/constraints in community ecology, so lets use them.
 
 - Biomass distribution across species, $\vec{B}(t)$.
-- Bioenergetic model $\frac{\partial B}{\partial t}$, Grilli et al and history.
+- Bioenergetic model $\frac{\partial B}{\partial t}$, dominguez-garcia et al and history.
+
 - Species trait distributions
   - $T_i(t, \vec{x})$.
 - Interaction potential $$[ \Phi_{ij}  ] = f(\vec{T}, \vec{B})$$
 
-- bioenergetic 
+- bioenergetic
 $$\frac{d\vec{B}_i}{dt} = r_i G_i B_i + \sum_{j \in \text{prey}} [e_{0j}F_{ij}] - \sum_{k \in \text{prod}} [B_k F_{ki}] - x_i B_i - d_i B_i $$
 
 
