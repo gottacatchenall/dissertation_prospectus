@@ -7,7 +7,22 @@ abstract:  here it is
 \pagebreak
 # Introduction
 
+What is this?
+
+A software toolkit utilizing ABC to fit ecological simulation models to datasets that span a variety of ecological scenarios, for the purpose of inference, hypothesis testing, and forecasting.
+
+	- many scenarios: modular, meaning different questions across scales/types of data can simulated and interface with the software
+
+
+
+Ecological science is global endeavor, and by developing tools that are usable and applicable to a wide variety of problems, we can  
+
+
+
+
+
 ## Why is community ecology related to biodiversity, evolution, broad questions?
+
 - Interactions within and across scales, Levin
 - Community ecology necessarily occurs in both space and time.
 - Ecosystems are inherently dynamical systems.
@@ -179,11 +194,26 @@ There is a distinction between observables and latent variables.
 
 Poisot 2014 model of interaction networks. Relates to the properties we can measure.
 
+Abstracting and modularity of a model. 
+
+
+
 ## A Generative Model of Food-Web Topology
 
-- f
-
 Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin{bmatrix} A_{ij} \end{bmatrix}$, where $$A_{ij} = \begin{cases}1 \quad\quad& \text{if interaction is possible} \\ 0 & \text{otherwise}\end{cases}$$
+
+- Niche Model, @williams_simple_2000
+  - $\theta_T$ : 
+    - number of species, $N_s$
+    - connectance, $C$
+  - other parameters can represent structure, etc. allesina 
+- Generating a metaweb $A$ using the niche model with $\theta_T = \{ N_s, C \}$
+  1. Define a value  $n_i$, corresponding to the value of species $i$'s location in the trophic niche space, $n_i \in [0,1]$.
+    - For each species, $$n_i \sim U(0,1)$$
+  2. Define, for each species $i$, a region $(l_i, u_i)$ on the interval  $[0,1]$ corresponding to the range of niche space which species $i$ eats. For convenience, call the midpoint of this interval $m_i$ and the radius of species $i$'s niche $r_i = \frac{u_i - l_i}{2}$'. via @williams_simple_2000, we know that if we set $E[r_i] = \frac{1}{2C}  - 1$. if $C \in [0,0.5]$, then $\beta \in [0, \infty]$.
+    - For each species $$m_i \sim U(0, n_i) $$ $$r_i \sim \beta (a, b)$$ where $a = 1$ and $E[\beta(1, b)] =  \frac{1}{1 + b}$
+  
+  3. $$A_{ij} = \begin{cases} 1 \quad\quad&\text{if}\  n_j \in (l_i, u_i) \\ 0 &\text{else} \end{cases}$$
 
 ## Thermodynamic Community Model
 
@@ -195,14 +225,19 @@ Ecology has long struggled to find generality. There are invariants/constraints 
   - $T_i(t, \vec{x})$.
 - Interaction potential $$[ \Phi_{ij}  ] = f(\vec{T}, \vec{B})$$
 
+- bioenergetic 
+$$\frac{d\vec{B}_i}{dt} = r_i G_i B_i + \sum_{j \in \text{prey}} [e_{0j}F_{ij}] - \sum_{k \in \text{prod}} [B_k F_{ki}] - x_i B_i - d_i B_i $$
+
 
 
 ## Spatial Model
 
 - spatial graph or a lattice,
 - $\vec{x} \in X$
-- how does $x_i$ affect $x_j$? dispersal potential
+- how does $x_i$ affect $x_j$? dispersal potential.
 - $E_i(t,x)$ spatial distribution of environmental variable / habitat suitability
+	- abstraction of multiple environmental variables into a distribution of 'habitat suitability'
+
 
 
 
