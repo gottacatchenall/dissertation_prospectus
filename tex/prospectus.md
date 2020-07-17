@@ -12,10 +12,11 @@ What is this?
 A software toolkit utilizing ABC to fit ecological simulation models to datasets that span a variety of ecological scenarios, for the purpose of inference, hypothesis testing, and forecasting.
 
 	- many scenarios: modular, meaning different questions across scales/types of data can simulated and interface with the software
+	-
 
 
 
-Ecological science is global endeavor, and by developing tools that are usable and applicable to a wide variety of problems, we can  
+Ecological science is global endeavor, and by developing tools that are usable and applicable to a wide variety of problems, we can
 
 
 
@@ -210,24 +211,39 @@ Takes on parameters, $\theta_T = \{\dots\}$, and produces a metaweb, $A = \begin
 - Generating a metaweb $A$ using the niche model with $\theta_T = \{ N_s, C \}$
   1. Define a value  $n_i$, corresponding to the value of species $i$'s location in the trophic niche space, $n_i \in [0,1]$.
     - For each species, $$n_i \sim U(0,1)$$
-  2. Define, for each species $i$, a region $(l_i, u_i)$ on the interval  $[0,1]$ corresponding to the range of niche space which species $i$ eats. For convenience, call the midpoint of this interval $m_i$ and the radius of species $i$'s niche $r_i = \frac{u_i - l_i}{2}$'. via @williams_simple_2000, we know that if we set $E[r_i] = \frac{1}{2C}  - 1$. if $C \in [0,0.5]$, then $\beta \in [0, \infty]$.
-    - For each species $$m_i \sim U(0, n_i) $$ $$r_i \sim \beta (a, b)$$ where $a = 1$ and $E[\beta(1, b)] =  \frac{1}{1 + b}$
+  2. Define, for each species $i$, a region $(l_i, u_i)$ on the interval  $[0,1]$ corresponding to the range of niche space which species $i$ eats. For convenience, call the midpoint of this interval $m_i$ and the radius of species $i$'s niche $r_i = \frac{u_i - l_i}{2}$  via @williams_simple_2000, we know that if we set $E[r_i] = \frac{1}{2C}  - 1$. if $C \in [0,0.5]$, then $\beta \in [0, \infty]$.
+    - For each species $$m_i \sim U(0, n_i)$$  $$r_i \sim \beta (a, b)$$ where $a = 1$ and $E[\beta(1, b)] =  \frac{1}{1 + b}$
 
-  3. $$A_{ij} = \begin{cases} 1 \quad\quad&\text{if}\  n_j \in (l_i, u_i) \\ 0 &\text{else} \end{cases}$$
-
-## Thermodynamic Community Model
+  3. $$A_{ij} = \begin{cases}\end{cases}$$
+  
+  
+## Thermodynamic Consumer-Resource Model (TCRM)
 
 Ecology has long struggled to find generality. There are invariants/constraints in community ecology, so lets use them.
 
 - Biomass distribution across species, $\vec{B}(t)$.
 - Bioenergetic model $\frac{\partial B}{\partial t}$, dominguez-garcia et al and history.
-
 - Species trait distributions
+  
   - $T_i(t, \vec{x})$.
 - Interaction potential $$[ \Phi_{ij}  ] = f(\vec{T}, \vec{B})$$
+- thermodynamic consumer-resource model (tcrm) $$\frac{d\vec{B}_i}{dt} = r_i G_i B_i + \sum_{j \in \text{prey}} [e_{0j}F_{ij}] - \sum_{k \in \text{prod}} [B_k F_{ki}] - x_i B_i - d_i B_i$$
 
-- bioenergetic
-$$\frac{d\vec{B}_i}{dt} = r_i G_i B_i + \sum_{j \in \text{prey}} [e_{0j}F_{ij}] - \sum_{k \in \text{prod}} [B_k F_{ki}] - x_i B_i - d_i B_i $$
+  - $r_i$ : indicator for plants/primary production $$r_i = \begin{cases} 1 \quad\quad\quad &\text{if } i \text{ is a primary producer} \\ 0 &\text{otherwise}\end{cases}$$
+
+  - $x_i$: metabolic demand for species $i$   $$x_i = \begin{cases} 0.138m_i^{0.25} \quad\quad\quad & \text{if primary producer} \\ 0.314m_i^{0.25} & \text{else} \end{cases}$$
+
+  - $d_i$: natural mortality rate $$d_i  = d_0 x_i $$ with $d_0 = 0.1$
+
+  - $e_{ij}$ : efficiency of energy conversion from $i \to j$ 
+
+    $$f$$
+
+  - $G_i$: growth of primary producers 
+
+  - $F_{ij}$ : functional response $i \to j$ 
+
+  - f
 
 
 
@@ -256,7 +272,7 @@ $$\frac{d\vec{B}_i}{dt} = r_i G_i B_i + \sum_{j \in \text{prey}} [e_{0j}F_{ij}] 
 \pagebreak
 # What does it do?
 - simulation can be used to explore the properties of complex systems on scales larger than can be observed.
-- using approx. Bayes comp. to fit the results of complex simulation models to data  
+- using approx. Bayes comp. to fit the results of complex simulation models to data
 
 ## Major Questions
 - differentiating niche vs neutral processes in metacommunity assembly, across spatial scale
