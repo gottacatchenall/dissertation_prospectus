@@ -1,4 +1,4 @@
-pandoc ./tex/*.md \
+pandoc ./tex/prospectus.md \
   -o "./output.pdf" \
   --pdf-engine=xelatex \
   --biblatex \
