@@ -7,11 +7,46 @@ abstract: |
 
 # Introduction
 
-In Edmond Halley's _Synopsis of the Astronomy of Comets_ (1705), Halley used his friend and colleague Issac Newton's model of gravitation to estimate the orbit of his now eponymous comet. Halley conjectured that past observation of 'different' comets, each appearing roughly 76 years after the previous, were in fact the same object, and that the variability in the period of the comet was attributable to the variable gravitational influence of Jupiter and Saturn. Halley's computations enabled him to predict his comet's eventual return to Earth in 1758, and although he didn't live to observe his prediction come true, his prediction helped provide the initial validation of much of Newtonian mechanics and Kepler's theory of elliptical orbits.
+In Edmond Halley's _Synopsis of the Astronomy of Comets_ (1705), Halley used his friend and colleague Issac Newton's model of gravitation to estimate the orbit of his now eponymous comet. Halley conjectured that past observations of 'different' comets, each appearing roughly 76 years after the previous, were in fact the same object, and that the variability in the comet's period was attributable to the variable gravitational influence of Jupiter and Saturn. Halley's computations enabled him to predict his comet's eventual return to Earth in 1758, and although he didn't live to observe his prediction come true, his work helped provide the initial validation of much of Newtonian mechanics and Kepler's theory of elliptical orbits.
 
-The success of Haley's prediction also further (supported) the methods of Cartesian reductionism as the principle  (ideology) to scientific understanding. There is no natural system that is not complex. The motion of matter is subject to the ever-changing pairwise gravitational forces of all matter in existence, and yet Halley was successful in approximating the universe with the set $A = \{\text{Sun}, \text{Jupiter}, \text{Saturn}, \text{Earth}, \text{Comet} \}$. 
+The success of Halley's prediction also further (supported) the methods of Cartesian reductionism as the principal ideology in scientific understanding. There is no natural system that is not complex. The motion of matter is subject to the ever-changing pairwise gravitational forces of all matter in existence, and yet Halley was successful in approximating the universe with the set $A = \{\text{Sun}, \text{Jupiter}, \text{Saturn}, \text{Earth}, \text{Comet} \}$. 
 
-In ecology (and the biological sciences in general), we are not so lucky. Ecological systems have long evaded effective prediction not just because they are inherently complex, but also because their complexity is (irreducible) to a set of concepts from which neat and tidy quantitative predictions can be made. Further, they are adaptive---organisms are both the subject and object of their evolution, constantly in flux, erasing the conditions that gave rise to the current condition (@levins_lewontin). 
+In ecology (and the biological sciences in general), we are not so lucky. Ecological systems have long evaded effective prediction not just because they are inherently complex, but also because their complexity is (irreducible) to a set of concepts from which neat and tidy quantitative predictions can be made. 
+
+As an example, consider the Lotka-Volterra model. Much like the model of Newtonian gravity Halley applied to his comet, LV is written in the language of coupled-differential equations^[The reality is computing the gravitational dynamics of more than two bodies of comparable mass is, much like ecological modeling, tough. Modern astrodynamicists use simulation models for many of the same reasons we advocate their use in ecology, coming up in the main text.].
+
+Okubo Toy Model. In reality, there is at least enough influence on the abundance of each species from the combined factors of environmental and demographic stochasticity, trait-matching, spatial distributions, and so on, that LV doesn't make quantitative predictions.
+
+
+
+Explicit quantitative predictions. Some systems are inherently hard to predict and there will be lots of uncertainty about our estimate. 
+
+
+
+Ecosystems are emergent phenomena, stochastic and variable at all scales. In biology, we find that our attempts to reduce a systems down to a set of concepts do not succeed because at any level of biological organization there is internal heterogeneity. 
+
+In community ecology, it seems that atomic level of organization is naturally the Plantonic form of the Individual. Yet, adopting the Platonic form "individual" neglects the immense variability in the processes driving any given individual. Certainly this abstraction would cause consternation from the behavioral ecologists down the hall, to the cell biologists studying gene expression, to the biochemists doing, uh, biochemistry.
+
+This is not to say that we should build ecological models starting from the building blocks of particle physics (Levins 1992), but   
+
+
+
+> A space capsule could not land on the moon without Newtonian abstractions, nor could it land with them alone. The problem for science is to understand the proper domain of explanation of each abstraction rather than become its prisoner.
+>
+> 
+>
+> Lewontin and Levins  (1978?)
+
+
+
+And out of this, you get a field that, at least in is infancy, was fairly described as "a mess". 
+
+Why is simulation useful as a tool for building process models of complex systems?
+
+	- directly incorporate stochasticity
+	- modularity, each scale can have as much internal detail as you want 
+
+
 
 
 
@@ -30,11 +65,17 @@ Simulation has two parts:
 
 
 
+Simulation models have long been used for forecasting and inference in complex systems. One does not struggle to list fields where simulation models are a ubiquitous tool of the trade--climate science, meteorology, epidemiology, etc. Ecology has much to gain in adopting these methods as regular.  	
+
+
+
+Goal of dissertation is to build simulation models that can be used for ABC in real systems and also for the virtual lab stuff. 
+
 # Models and Data
 
 I would classify the vast majority of time I spend "working" (under the categories of) building, interpreting, thinking, reading, writing, and talking about models.  So what are these models? 
 
-At its core a model must map observable input conditions $x$ to observable output conditions $\hat{y}$ as a function of both $x$ and model parameters $\theta$ which typically are scalar coefficients used  in the definition of the mapping $\hat{y} = f(\hat{x}, \theta)$.  
+At its core a model must map observable input conditions $x$ to observable output conditions $y$ as a function of both $x$ and model parameters $\theta$ which typically are scalar coefficients used  in the definition of the mapping $y = f(\hat{x}, \theta)$.  
 
 If $\hat{y} \approx  y$, we say our model $f$ is "good", and we Google "Nature submission instructions".
 
@@ -56,7 +97,7 @@ We can broadly split models into two types:
 
 2. Statistical Models
 
-Other types of statistical models (typically those that full under the ambiguous banner "machine learning") do not define $f$ with much regard towards the actual concepts $A$ at all, but instead are cleverly designed algorithms which can accurately map input conditions to output conditions in some cases. 
+Other types of statistical models (typically those that fall under the ambiguous banner "machine learning") do not define $f$ with much regard towards the actual concepts $A$ at all, but instead are cleverly designed algorithms which can accurately map input conditions to output conditions in some cases. 
 
 
 
@@ -76,11 +117,11 @@ There are no natural isomorphisms from hypotheses to statistical models---confli
 
 A feature of many statistical models that we employ in complex systems is that they dramatically reduce the dimensionality of our data. This is often done out of sheer necessity--however an unfortunate byproduct of some summary statistics is that they produce the same results under differing process models. To use the example from Figure 1, models for inferring selection historically rely on summary statistics like $F_{ST}$, often summarized across multiple loci, in order to "test" the observed value of $F_{ST}$ against some expectation, like migration-drift balance, to determine if there is evidence of selection. 
 
-Statistical models are certainly not without value, however, the increasing availability of computing power to simulate complex process models at large scales have enabled the gap between process models and statistical models to shrink in recent years--largely due to the advances in the methods of Approximate Bayesian Computation (ABC). Conveniently, with respect to the  example we've been using, one trend in evolutionary genetics is to "test" for selection using simulation models, which represent a more detailed representation of the process that can be captured with most conventional statistical models. A researcher can implement a simulation model whereby genomes, individuals, and populations are represented at any level of detail imaginable, and one can then use ABC methods to infer model parameters, and to use model (comparison) criteria to determine which mechanistic process is more likely to have produced a dataset.
+Purely statistical models are certainly not without value, however, the increasing availability of computing power to simulate complex process models at large scales have enabled the gap between process models and statistical models to shrink in recent years--largely due to the advances in the methods of Approximate Bayesian Computation (ABC). Conveniently, with respect to the example we've been using, one trend in evolutionary genetics is to "test" for selection using simulation models, which represent a more detailed representation of the process than can be captured with most conventional statistical models. A researcher can implement a simulation model whereby genomes, individuals, and populations are represented at any level of detail imaginable, and one can then use ABC methods to infer model parameters, and to use model (comparison) criteria to determine which mechanistic process is more likely to have produced a dataset.
 
 
 
-If summary statistics are not differentiable at the level of the process, that itself is interesting, and in general simulation models are excellent testing grounds for the biases of summary statistics.  
+If summary statistics are not differentiable at the level of the process, that itself is interesting, and, in general, simulation models are excellent testing grounds for the biases of summary statistics.  
 
 
 
@@ -90,7 +131,7 @@ Then, we estimate $\theta$ using a variety of methods in both frequentist and Ba
 yet what the vast majority of these methods have in common is that they estimate $\theta$ by using a likelihood function,
 $\mathbb{L}(\hat{x}, \theta)$.
 
-In a frequentist world, the likelihood function is everywhere. Most off-the-shelf statistical 'tests' are simply repackage a likelihood function that can be package a likelihood function maximum likelihood one of the most popular algorithms for estimating parameters in frequentist models.
+In a frequentist world, the likelihood function is everywhere. Most off-the-shelf statistical 'tests' are simply a repackaged likelihood function that can be used to estimate parameters via maximum likelihood or any other frequentist estimation method.  
 
 Similarly, in a Bayesian world, the likelihood function is essential to the application
 of Bayes' theorem to inference, i.e.
@@ -103,19 +144,13 @@ Likelihood functions are in the realm of the analytic.
 
 
 
-It has long been difficult to describe a likelihood function for a stochastic model of a complex system. In general for most stochastic processes we are limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
+It has long been difficult to describe a likelihood function for a stochastic model of a complex system. In general for most stochastic processes we are limited by our ability to describe analytic likelihood functions.
 
 
 
 However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem^[There are notable caveats here, primarily that if the true distribution that we are trying to approximate doesn't have finite variance, CLT no longer applies.], we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. 
 
 
-
-Simulation models have long been used forecasting and inference of complex systems. One does not struggle to list fields where simulation models are a ubiquitous tool of the trade--climate science, meteorology, epidemiology, etc. Ecology has much to gain in adopting these methods as regular.  	
-
-
-
-Goal of dissertation is to build simulation models that can be used for ABC in real systems and also for the virtual lab stuff. 
 
 
 
@@ -127,7 +162,7 @@ Spatial ecology as it exists today would be radically different if not for @maca
 
 The theoretical construction of space used by @macarthur_and_wilson---a set of internally homogeneous 'islands', each variable in size and surrounded by inhospitable water/matrix, each either occupied or unoccupied by a particular species---has had deep impacts on many modern methods used to infer ecological patterns across space. Metapopulation theory, coined by @levins_metapop, describes a system of discrete 'patches', all either occupied/unoccupied. Modern occupancy models are rooted in this view of space: discrete observations at spatial coordinates, with environmental covariates.
 
-However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's surface can be used to estimate various properties about its surface. The properties used by both different satellites and different models varies widely in what they try to predict, from the level of coarse land cover categories to the presence of particular species.
+However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's terrain can be used to estimate various properties about its surface. The properties used by both different satellites and different models vary widely in what they try to predict---from the level of coarse land-cover categorizations to the presence of particular species.
 
 - internally homogeneous islands, each a variable distance from the mainland with a fixed 'area'^[area here corresponds to resource availability, and has to spatial significance in the model] and distance from the mainland^[a never-ending source of all species in the metaweb]
   - every species has the same probability of colonization/extinction
@@ -147,24 +182,26 @@ The earliest quantitative models of ecological interactions are typically attrib
 
 The Lotka-Voterra (LV) model is defined by a set of coupled differential equations
 $$\begin{cases}  \dot{F} = F(\alpha R - \beta) \\   \dot{R} = R(g - \gamma F)  \end{cases} $$
-where $R$ represents the abundance of a prey species, typically represented as rabbits, and  $F$ represents the abundance of a preadtor, typically thought of as foxes.
+where $R$ represents the abundance of a prey species, typically represented as rabbits, and  $F$ represents the abundance of a predator, typically thought of as foxes.
 
-Although the LV model is not great in the sense that it doesn't make accurate predications about the abundance of predator and prey in actual systems, it is what Okubo calls a "toy model", which interntionally oversimplifies the dynamics of a complex process (like predator-prey interactions) into a system that we can study using the tools of mathematical analysis.
-From a mathematical standpoint, what is interesting about the LV model is that it exhibits limit-cycles, whereby both abundance of predator and prey both change over time in a regular cycle--a dynamic equilibrium.   
-
-
+Although the LV model is flawed in the sense that it doesn't make accurate predictions about the abundance of predator and prey in actual systems, it is what Okubo calls a "toy model", which intentionally oversimplifies the dynamics of a complex process (like predator-prey interactions) into a system that we can study using the tools of mathematical analysis.
+From a mathematical standpoint, what is interesting about the LV model is that it exhibits limit-cycles, whereby both the abundance of predator and prey are both constantly in flux, and yet change over time in a regular cycle that enables both species to persist over time--a dynamic equilibrium.   
 
 
-- Lotka Voltera model
-- MacArthur CR model
+
+### Bioenergetic
+
+It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex in cause and outcome.
 
 
-- Macarthur and wilson
-- types of community interactions
-- ecological networks
-- Neutral theory
-  - hubbell and Neutral
-    - nearly neutral
+When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere.
+
+It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one.
+
+through poisot lab, a software package to simulate innes model with diffeq solver
+
+ - real ecosystems are not governed by deterministic forces
+ - stochasticity in interactions, for a variety of reasons
 
 
 
@@ -204,18 +241,3 @@ The structure of food-webs has been one of the most studied topics in ecology ov
   - niche model
   - allesina, likelihood function to infer niche model parameters from real food webs
     - a way to generate food-webs with similar topological structure to an empirical web, to use simulation to make statement about stability
-
-## Bioenergetic Community Models
-
-It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex is cause and outcome.
-
-
-When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere.
-
-It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one.
-
-through poisot lab, a software package to simulate innes model with diffeq solver
-
- - real ecosystems are not governed by deterministic forces
- - stochasticity in interactions, for a variety of reasons
-
