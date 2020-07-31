@@ -101,13 +101,121 @@ Likelihood functions are in the realm of the analytic.
 
 - emphasize numeric vs analytic
 
- For most stochastic processes, we a limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
-
-It has long been difficult to describe a likelihood function for a stochastic model of a complex system. However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem^[There are notable caveats here, primarily that if the true distribution that we are trying to approximate doesn't have finite variance, CLT no longer applies.], we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. 
 
 
+It has long been difficult to describe a likelihood function for a stochastic model of a complex system. In general for most stochastic processes we are limited by our ability to describe analytic likelihood functions that can be quickly computed to fit models.
 
-Simulation models have long been used forecasting and inference of complex systems. One does not struggle to list fields where simulation models are a ubiquitous tool of the trade--climate science, meteorology, epidemiology, etc. Ecology has much to gain in adopting these methods. 	
 
 
+However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem^[There are notable caveats here, primarily that if the true distribution that we are trying to approximate doesn't have finite variance, CLT no longer applies.], we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. 
+
+
+
+Simulation models have long been used forecasting and inference of complex systems. One does not struggle to list fields where simulation models are a ubiquitous tool of the trade--climate science, meteorology, epidemiology, etc. Ecology has much to gain in adopting these methods as regular.  	
+
+
+
+Goal of dissertation is to build simulation models that can be used for ABC in real systems and also for the virtual lab stuff. 
+
+
+
+# Literature Overview
+
+## Spatial Ecology Literature
+
+Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is foundational to both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology.
+
+The theoretical construction of space used by @macarthur_and_wilson---a set of internally homogeneous 'islands', each variable in size and surrounded by inhospitable water/matrix, each either occupied or unoccupied by a particular species---has had deep impacts on many modern methods used to infer ecological patterns across space. Metapopulation theory, coined by @levins_metapop, describes a system of discrete 'patches', all either occupied/unoccupied. Modern occupancy models are rooted in this view of space: discrete observations at spatial coordinates, with environmental covariates.
+
+However, a tension counter to discrete space runs throughout spatial ecology. The availability of remote-sensing technology has enabled the availability of 'continuous' ecological data in the form of rasters. As satellites designed for Earth Science orbit the Earth, they reflect electromagnetic signals at the surface of our planet, and record the spectral signature they receive reflected back at them. The reflective signature of Earth's surface can be used to estimate various properties about its surface. The properties used by both different satellites and different models varies widely in what they try to predict, from the level of coarse land cover categories to the presence of particular species.
+
+- internally homogeneous islands, each a variable distance from the mainland with a fixed 'area'^[area here corresponds to resource availability, and has to spatial significance in the model] and distance from the mainland^[a never-ending source of all species in the metaweb]
+  - every species has the same probability of colonization/extinction
+  - the species richness at equilibrium as a function of the area replicates the species-area relationship
+  - its a process model, which is good--however power-laws are ubiquitous patterns that occur as an outcome due to many different mechanistic processes
+
+From this, we can apply the metapopulation data--occupancy at points, with environmental data at points, to produce rasters that estimate species occupancy based on env data. These species distribution models: max ent, bioclim. what is the strength of env effects?
+
+There is a difference in scale in what this type of data it provides, what time period it covers, and what spatial resolution it has. This "resolution gap" is pervasive in most of the large-scale data sets ecologists try to use: species, etc.
+
+
+## Community Dynamics
+
+- Quantitative community ecology.
+
+The earliest quantitative models of ecological interactions are typically attributed to Lotka and Volterra, independently.
+
+The Lotka-Voterra (LV) model is defined by a set of coupled differential equations
+$$\begin{cases}  \dot{F} = F(\alpha R - \beta) \\   \dot{R} = R(g - \gamma F)  \end{cases} $$
+where $R$ represents the abundance of a prey species, typically represented as rabbits, and  $F$ represents the abundance of a preadtor, typically thought of as foxes.
+
+Although the LV model is not great in the sense that it doesn't make accurate predications about the abundance of predator and prey in actual systems, it is what Okubo calls a "toy model", which interntionally oversimplifies the dynamics of a complex process (like predator-prey interactions) into a system that we can study using the tools of mathematical analysis.
+From a mathematical standpoint, what is interesting about the LV model is that it exhibits limit-cycles, whereby both abundance of predator and prey both change over time in a regular cycle--a dynamic equilibrium.   
+
+
+
+
+- Lotka Voltera model
+- MacArthur CR model
+
+
+- Macarthur and wilson
+- types of community interactions
+- ecological networks
+- Neutral theory
+  - hubbell and Neutral
+    - nearly neutral
+
+
+
+## Metacommunities
+
+- The metacommunity concept as a 'network of networks'-- a spatial network
+- leibold {leibold_metacommunity_2004}
+  - four paradigms
+    1. Patch dynamics perspective
+    2. Species sorting perspective
+    3. Mass-effect
+    4. Neutral
+
+- velland 2010
+  - 1. selection
+    2. dispersal
+    3. drift
+    4. speciation
+
+- @pillai_metacommunity_2011
+
+- Poisot 2014
+
+- recent ecology letters papers
+
+
+
+- Joint SDMS
+
+## Food Web Topology
+
+The structure of food-webs has been one of the most studied topics in ecology over the last 50 years.
+
+- Brief review of the history of generative models of food-web topology
+  - May, stability and complexity
+  - cascade model, using one dimensional niche space, a proxy for allometric scaling
+  - niche model
+  - allesina, likelihood function to infer niche model parameters from real food webs
+    - a way to generate food-webs with similar topological structure to an empirical web, to use simulation to make statement about stability
+
+## Bioenergetic Community Models
+
+It's true that community ecology has been called "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex is cause and outcome.
+
+
+When studying any system, one of the most powerful tools of inquiry is paying attention to what is _invariant_, meaning that which does not change in the system, even as we adjust its parameters. Mathematicians understand this deeply. Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and it has to go somewhere.
+
+It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one.
+
+through poisot lab, a software package to simulate innes model with diffeq solver
+
+ - real ecosystems are not governed by deterministic forces
+ - stochasticity in interactions, for a variety of reasons
 
