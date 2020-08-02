@@ -314,9 +314,9 @@ Ecology has long struggled to find generality. There are invariants/constraints 
 
 - spatial graph or a lattice,
 - abstraction of multiple environmental variables into a distribution of 'habitat suitability',
-- however, this is a function of traits also $H_i= f(T_i(x), E_i(x))$
+- however, this is a function of traits also $H_i(x) = f(T_i(x), E_i(x))$
 - $\vec{x} \in X$
-- how does $x_i$ affect $x_j$? dispersal potential.
+- how does $x_i$ affect $x_j$? dispersal potential. stochastic or diffusion?
 
 
 
@@ -359,7 +359,7 @@ One simple way
 \pagebreak
 # Dissertation Outline
 ##  Chapter One — A Review of the Metacommunity Literature
--f
+- f
 
 ##  Chapter Two — A Model of Metacommunity dynamics
 - f
