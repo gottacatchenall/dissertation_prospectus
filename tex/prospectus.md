@@ -18,7 +18,7 @@ In ecology (and the biological sciences in general), we are not so lucky. Ecolog
 
 
 
-Ecosystems are emergent phenomena, stochastic and variable at all scales. In biology, we find that our attempts to reduce a systems down to the level of atomic units does not  necessarily succeed because at any level of biological organization there is internal heterogeneity (Levins and Lewontin). In community ecology, it seems that atomic level of organization is naturally the individual of a given species. Yet, adopting the Platonic form "individual" neglects the immense variability in the processes driving any given individual. Certainly this abstraction would cause consternation from the behavioral ecologists down the hall, to the cell biologists studying gene expression, to the biochemists doing, uh, biochemistry. This is not to say that we should build ecological models starting from the building blocks of particle physics (Levins 1992), but instead wemust be cognizant of what our models treat as homogeneous--a false premise in biological systems.    
+Ecosystems are emergent phenomena, stochastic and variable at all scales. In biology, we find that our attempts to reduce a systems down to the level of atomic units does not  necessarily succeed because at any level of biological organization there is internal heterogeneity (Levins and Lewontin). In community ecology, it seems that atomic level of organization is naturally the individual of a given species. Yet, adopting the Platonic form "individual" neglects the immense variability in the processes driving any given individual. Certainly this abstraction would cause consternation from the behavioral ecologists down the hall, to the cell biologists studying gene expression, to the biochemists doing, uh, biochemistry. This is not to say that we should build ecological models starting from the building blocks of particle physics (Levins 1992), but instead we must be cognizant of what our models treat as homogeneous--a false premise in biological systems.    
 
 
 
@@ -38,7 +38,7 @@ Using simulation models, we contest, we can now explore the complex processes th
 
 
 
-The primary goal of this prospectus is to outline the need for simulation models in biodiversity science, both for the purposes of answering "purely" scientific questions, but also for forecasting and management in real ecological systems. Most published studies which incorporate simulation tend to fall into one of two categories: the first being where the simulation model is used as a "virtual laboratory" (@volker_grimm_ibm) to experiment with systems that do not fit into the spatial/temporal scale that can be done in real life, the second being for the application of a simulation model to a real systmem. 
+The primary goal of this prospectus is to outline the need for simulation models in biodiversity science, both for the purposes of answering "purely" scientific questions, but also for forecasting and management in real ecological systems. Most published studies which incorporate simulation tend to fall into one of two categories: the first being where the simulation model is used as a "virtual laboratory" (@volker_grimm_ibm) to experiment with systems that do not fit into the spatial/temporal scale that can be done in real life, the second being for the application of a simulation model to a real system. 
 
 - parameters come from a set of values that the researcher think is interesting
 
@@ -57,11 +57,11 @@ I would classify the vast majority of time I spend "working" (under the categori
 
 At its core a model must map observable input conditions $x$ to observable output conditions $y$ as a function of both $x$ and model parameters $\theta$ which typically are scalar coefficients used  in the definition of the mapping $y = f(\hat{x}, \theta)$.  
 
-If $\hat{y} \approx  y$, we say our model $f$ is "good", and we Google "Nature submission instructions". If not, we say our model is bad and try something else. Model selection has deep and rich history, starting somewhere near "Occam's Razor" and ending far outside the scope of this document. For our purposes, it suffices to understand that there exist several model selection criteria that enable us to determine which of a set of competiting explanatory models, $\{f_1, f_2, \dots\}$ provides the highest fidelty explanation of our data. 
+If $\hat{y} \approx  y$, we say our model $f$ is "good", and we Google "Nature submission instructions". If not, we say our model is bad and try something else. Model selection has deep and rich history, starting somewhere near "Occam's Razor" and ending far outside the scope of this document. For our purposes, it suffices to understand that there exist several model selection criteria that enable us to determine which of a set of competing explanatory models, $\{f_1, f_2, \dots\}$ provides the highest fidelity explanation of our data. 
 
 
 
-What separates science from philosophy? For most of recorded human history, science and philosophy were not separate disciplines, and most languages wouldn't distinguish a scienctist from a phiolosopher. 
+What separates science from philosophy? For most of recorded human history, science and philosophy were not separate disciplines, and most languages wouldn't distinguish a scientist from a philosopher. 
 
 > In fact, the sciences, arts, and philosophies are all equally creators. . . Concepts
 > do not wait for us ready-made, like celestial bodies. There is no heaven for
@@ -71,7 +71,7 @@ What separates science from philosophy? For most of recorded human history, scie
 
 We both create abstractions to model systems
 
-I would contest science resicts itself to models that allow some interface between the conceptual models we make and that which is observable about the world.  
+I would contest science restricts itself to models that allow some interface between the conceptual models we make and that which is observable about the world.  
 
 such that they can be compared with so-called 'ground truth'.
 
@@ -111,7 +111,7 @@ A feature of many statistical models that we employ in complex systems is that t
 
 
 
-Process models use conceptal objects $A$ that (at least with perfect information) could be measured---dispersal, traits, environmental conditions, etc. Summary statistics are usually pure abstractions that may/may not correspond to anything in the real world. 
+Process models use conceptual objects $A$ that (at least with perfect information) could be measured---dispersal, traits, environmental conditions, etc. Summary statistics are usually pure abstractions that may/may not correspond to anything in the real world. 
 
 
 
@@ -123,9 +123,9 @@ Purely statistical models are certainly not without value--much of our current t
 
 In order to understand why ABC has significant potential in ecology, it is best to start by asking: what is it that makes applying statistical models to data so much easier than process models? The problem begins with the difficulty of estimating the value of parameters in a process model from real data. All models have 'parameters', some latent variable that cannot feasibly be measured, i.e. all parameters are objects outside of $g(A)$. Parameters may only exist in our imaginations--they are real in the way the number $5$ is real.
 
-As an example, consider fitting a species-distribution model, $y = f(x, \theta)$, where $x$ is an environmental variable measured across space, and $y$ is the predicted probability of a given species being present. To fit this model y = $f(x, \theta)$, we need some observed instances of both environmental conditions $\hat{x}$ and species occupancy $\hat{y}$ in order to estimate $\theta$. There are seemingly unending methods of estimating $\theta$ using a variety of methods in both frequentist and Bayesian worlds, yet what the vast majority of these methods have in common is that they estimate $\theta$ by using a likelihood function, $\mathbb{L}(\hat{x} | \theta)$, which is defined as the probability of observing some data point $\hat{x}$ given a model definition $f$ and some parameter values $\theta$. If our model $f$ is simple, this can be written analytically, e.g. if we describe a naive SDM where the probability of occurance at a location in space $\vec{L}$ is given by the difference between the 'mean' trait value of a species, $T$, and the some environmental condition at that location, $E(\vec{L})$, we can define a model $f$ that says the probability of occurance at $\vec{L}$ is a Gaussian evaluated at $E(\vec{L}) - T$. Our model has a single parameter, $\theta = \{ \sigma \}$, and it is build from an analytically tractable distribution, we can write down our liklihood fairly easily: $$\mathbb{L}(\text{Species present at} \ \vec{L} \ |\  \sigma) = \frac{1}{\sqrt{2\sigma}} \exp \Big( \frac{-(T-E(\vec{L}))^2}{2\sigma^2} \Big)$$   
+As an example, consider fitting a species-distribution model, $y = f(x, \theta)$, where $x$ is an environmental variable measured across space, and $y$ is the predicted probability of a given species being present. To fit this model y = $f(x, \theta)$, we need some observed instances of both environmental conditions $\hat{x}$ and species occupancy $\hat{y}$ in order to estimate $\theta$. There are seemingly unending methods of estimating $\theta$ using a variety of methods in both frequentist and Bayesian worlds, yet what the vast majority of these methods have in common is that they estimate $\theta$ by using a likelihood function, $\mathbb{L}(\hat{x} | \theta)$, which is defined as the probability of observing some data point $\hat{x}$ given a model definition $f$ and some parameter values $\theta$. If our model $f$ is simple, this can be written analytically, e.g. if we describe a naive SDM where the probability of occurrence at a location in space $\vec{L}$ is given by the difference between the 'mean' trait value of a species, $T$, and the some environmental condition at that location, $E(\vec{L})$, we can define a model $f$ that says the probability of occurrence at $\vec{L}$ is a Gaussian evaluated at $E(\vec{L}) - T$. Our model has a single parameter, $\theta = \{ \sigma \}$, and it is build from an analytically tractable distribution, we can write down our likelihood fairly easily: $$\mathbb{L}(\text{Species present at} \ \vec{L} \ |\  \sigma) = \frac{1}{\sqrt{2\sigma}} \exp \Big( \frac{-(T-E(\vec{L}))^2}{2\sigma^2} \Big)$$   
 
-The ability to write our liklihood down in simeple analytic terms means that value of $\mathbb{L}$, the probability of observing your data given a value of $\sigma$, can be computed simply and then we are free to apply any number of parameter inference methods to estimate $\sigma$ . Once we know $\sigma$, we can estimate the probability of occurance at any point in space by simply evaluation $\mathbb{L}$ at that location, and have a fully-fledged SDM. 
+The ability to write our likelihood down in simple analytic terms means that value of $\mathbb{L}$, the probability of observing your data given a value of $\sigma$, can be computed simply and then we are free to apply any number of parameter inference methods to estimate $\sigma$ . Once we know $\sigma$, we can estimate the probability of occurrence at any point in space by simply evaluation $\mathbb{L}$ at that location, and have a fully-fledged SDM. 
 
 
 
@@ -135,11 +135,11 @@ $$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\hat{x})}{P(\theta)} = \fra
 
 
 
-What then, if we want to describe a model $f$ where the probability of occurance is driven by both neutral changes in spatial distributions, environmental stochasticity, variability in traits in space and time, etc.? One can imagine constructing a monstruous liklihood monster, compiled of distributions stack on top of each other forever. But if one wants to introduce covariance into these distributions, it quickly begins to require statistical expertise that is beyond what is reasonable for any non-practitioner of the field to know, especially for ecologists who are devoted to the management of a particular system and must also be asked to keep up with its natural history, etc. Thankfully, we have software like STAN which makes application of more complex models like this to be written and applied quickly, however such models still inevitably rely on assumptions about processes that have been abstracted away from the mechanism producing the data, and instead toward a statistical representation of a process that is subject to the pitfalls presented in Figure 1. 
+What then, if we want to describe a model $f$ where the probability of occurrence is driven by both neutral changes in spatial distributions, environmental stochasticity, variability in traits in space and time, etc.? One can imagine constructing a monstrous likelihood monster, compiled of distributions stack on top of each other forever. But if one wants to introduce covariance into these distributions, it quickly begins to require statistical expertise that is beyond what is reasonable for any non-practitioner of the field to know, especially for ecologists who are devoted to the management of a particular system and must also be asked to keep up with its natural history, etc. Thankfully, we have software like STAN which makes application of more complex models like this to be written and applied quickly, however such models still inevitably rely on assumptions about processes that have been abstracted away from the mechanism producing the data, and instead toward a statistical representation of a process that is subject to the pitfalls presented in Figure 1. 
 
 
 
-The gap between statistical and process models has long been the inability to adaquetly represent the liklihood function for a complex stochastic process. However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem^[There are notable caveats here, primarily that if the true distribution that we are trying to approximate doesn't have finite variance, CLT no longer applies.], we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. This is the central premise of Approximate Bayesian Computation (ABC), although similar methods for fitting simulations to data have appeared in many fields of study under different names. 
+The gap between statistical and process models has long been the inability to adequately represent the likelihood function for a complex stochastic process. However, modern computational power enables us to simulate many replicates of stochastic simulation models, and via the central limit theorem^[There are notable caveats here, primarily that if the true distribution that we are trying to approximate doesn't have finite variance, CLT no longer applies.], we can treat the distribution of simulation model outcomes as approaching the likelihood function as the number of replicates increases. This is the central premise of Approximate Bayesian Computation (ABC), although similar methods for fitting simulations to data have appeared in many fields of study under different names. 
 
 
 
@@ -151,7 +151,7 @@ biodiversity has many dimensions, here we focus on community. rhizomatic field o
 
 ## Spatial Ecology 
 
-Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is foundational to both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology.
+Spatial ecology as it exists today would be radically different if not for @macarthur_and_wilson. The Theory of Island Biogeography (TIBG) is a foundation for both spatial and community ecology. TIBG provides a mechanistic explanation for the species-area relationship, one of the most well-established "laws" in ecology.
 
 The theoretical construction of space used by @macarthur_and_wilson---a set of internally homogeneous 'islands', each variable in size and surrounded by inhospitable water/matrix, each either occupied or unoccupied by a particular species---has had deep impacts on many modern methods used to infer ecological patterns across space. Metapopulation theory, coined by @levins_metapop, describes a system of discrete 'patches', all either occupied/unoccupied. Modern occupancy models are rooted in this view of space: discrete observations at spatial coordinates, with environmental covariates.
 
