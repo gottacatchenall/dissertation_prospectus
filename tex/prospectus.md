@@ -48,7 +48,13 @@ We then detail how we'll implement this model as software that is modular and ca
 
 
 
-# Models and Data
+# Literature Overview
+
+biodiversity has many dimensions, here we focus on community. rhizomatic field of study, no de facto entrance. 
+
+get at the fundamental questions again and thats why you are reviewing these fields. 
+
+## Models and Data
 
 I would classify the vast majority of time I spend "working" (under the categories of) building, interpreting, thinking, reading, writing, and talking about models.  So what are these models? 
 
@@ -138,11 +144,9 @@ The gap between statistical and process models has long been the inability to ad
 
 
 
+Why are you about to do a review? Need a transition to literature related to question I'm asking in community ecology.  
 
 
-# Literature Overview
-
-biodiversity has many dimensions, here we focus on community. rhizomatic field of study, no de facto entrance. 
 
 ## Spatial Ecology 
 
@@ -165,9 +169,7 @@ There is a difference in scale in what this type of data it provides, what time 
 
 ## Community Structure
 
-The search for generality among ecological communities long flummoxed early ecologists, culminating in the (saying) community ecology is "a mess" (citation). Many of the premises of ecology necessitate that its phenomena are complex in cause and outcome. One of the most powerful tools for problem-solving in mathematics is paying attention to what is _invariant_ about a system, meaning that which does not change in the system, even as we adjust its parameters (Polya citation?). Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and insofar as we have any undisputed "laws" in science, one that is commonly accepted is that energy has to go somewhere.
-
-The application of thermodynamics to trophic communities led to a renaissance(?) in our understanding of trophic community structure. We directly had measureable things we could test against a model's expectation, like allometric scaling (cite), metabolic use (cite), and energy-efficiency in trophic interactions (cite). This enabled us to make more sophistocated predictions about community structure in empirical systems (stouffer paper, trophic theory islandbiogeo), and to further develop generative models of ecological networks that fit empirical food-webs. 
+The search for generality among ecological communities long flummoxed early ecologists, culminating in the (saying) community ecology is "a mess" (citation). 
 
 
 
@@ -181,6 +183,14 @@ The structure of food-webs has been one of the most studied topics in ecology ov
   - niche model
   - allesina, likelihood function to infer niche model parameters from real food webs
     - a way to generate food-webs with similar topological structure to an empirical web, to use simulation to make statement about stability
+
+
+
+
+
+One of the most powerful tools for problem-solving in mathematics is paying attention to what is _invariant_ about a system, meaning that which does not change in the system, even as we adjust its parameters (Polya citation?). Ecosystems vary in seemingly dimensionless ways. Yet, we can still find an invariant in ecology---the amount of energy per unit area on the planet is a measurable value, and insofar as we have any undisputed "laws" in science, one that is commonly accepted is that energy has to go somewhere.
+
+The application of thermodynamics to trophic communities led to a renaissance(?) in our understanding of trophic community structure. We directly had measureable things we could test against a model's expectation, like allometric scaling (cite), metabolic use (cite), and energy-efficiency in trophic interactions (cite). This enabled us to make more sophistocated predictions about community structure in empirical systems (stouffer paper, trophic theory islandbiogeo), and to further develop generative models of ecological networks that fit empirical food-webs. 
 
 It's true, the word 'bioenergetic' does sound like I'm about to try to sell you a collection of conveniently-priced crystals that will keep the bears away. However, it is fewer syllables than any of its potential synonyms, so I'm hoping we'll just be able to meet in the middle on this one.
 
@@ -225,49 +235,11 @@ Out of a synthesis of the fields of spatial and community ecology, we
 
 ## What can we measure?
 
-As we've explored, it is essential for a model $f$ to interface with observable quantities $g(A)$ of the conceptual objects $A$ that $f$ is structured around. This is inherently much in community ecology that is unobservable--the evolutionary life histories of organisms lie outside the temporal limits of our observation, as do the ecological conditions of the more-than extremely recent past. Even what we can directly observe--abundance/occupnacy, traits, genomes, etc.--are subject to the limitations of performing exhaustive field work, which can only be done on relatively small spatial scales. 
+As we've explored, it is essential for a model $f$ to interface with observable quantities $g(A)$ of the conceptual objects $A$ that $f$ is structured around. Move of what drives community dynamics in space and time is unobservable--the evolutionary life histories of organisms lie outside the temporal limits of our observation, as do the ecological conditions of the more-than extremely recent past. Even what we can directly observe--abundance/occupancy, traits, genomes, etc.--are subject to the limitations of exhaustive field work, which can only be done on relatively small spatial scales. 
 
-Especially in the realm data that is aggregable across large spatial scales, we have databases composed of occupancy/abundance data, traits, and interactions (mangal paper). The resolution of this data is variable 
-
- 
-
-Here we list the data that can
-
-  
-
-### Biotic
-
-- occupancy
-- traits, interactions
-  - usually in a database, compiled from individual studies with different aims
-    - lacking standardization - interaction
-
-### Abiotic
-
-- remote sensing is essential to spatial ecology
-
-- occupancy
-
-- traits, interactions
-
-  - usually in a database, compiled from individual studies with different aims
-  - lacking standardization - interaction
+Especially in the realm of data aggregated across large spatial scales, we have databases composed of occupancy/abundance data, traits, and interactions (mangal paper). but there are often differences in the resolution of this data---e.g. taxonomic/phylogenetic resolution. In terms of abiotic data, we are enabled by advances in remote sensing, which enable us to collect, with variable but ever-improving spatial and temporal resolution, environmental variables like temperature, precipitation, as well as land-usage maps, and more recently, topographical and hydrological models of the Earth's surface. From other fields we also have well-developed predictive models of climatology, hydrology, and land-use, which can serve as inputs into our predictive ecological models. 
 
 
-
-
-
-
-What can we use models to infer?
-
-Niche vs. Neutral
-
-environmental conditions and their relation to ranges and interactions
-
-dispersal and neutral colonization/extinction
-
-
-Poisot 2014 model of interaction networks. Relates to the properties we can measure.
 
 Abstracting and modularity of a model. There are four pieces that have to be represented. 
 
@@ -276,7 +248,7 @@ four parts:
 1. Community Model: the topology of the metaweb $A$, and the way the biomass flows through the metaweb, $\frac{\partial B}{\partial t}$
 2. Spatial Model: we have some set of locations ${x}$  in a spatial domain $S$. Each location $x$ is associated with a value of habitat suitability $H_i(x)$ for each species $i$, and a dispersal potential $\Phi_i(x \to y)$, which is the instantaneous probability that a unit of biomass moves from $x \to y \quad \forall x,y \in S$.
 3. Selection Model: how do the traits $T_i(x,t)$ of a species $i$  at a location $x$ at time $t$ change?   $\frac{\partial T_i(x,t)}{\partial t} = w (H_i(x,t), T_i(x,t))$ 
-4. Community Summary Mapping $C(\vec{B})$
+4. Community Summary Model  $C(\vec{B})$
 
 
 ## Community Model
@@ -390,3 +362,15 @@ Major Questions
 - critical transitions in community structure
   - when we change strength of environmental factors in shifting survivability/traits
   - when we change dispersal (connectivity, etc)Major Questions
+
+What can we use models to infer?
+
+Niche vs. Neutral
+
+environmental conditions and their relation to ranges and interactions
+
+dispersal and neutral colonization/extinction
+
+
+Poisot 2014 model of interaction networks. Relates to the properties we can measure.
+
