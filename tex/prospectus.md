@@ -136,6 +136,8 @@ $$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta) P(\theta)}{P(\hat{x})} = \fra
 
 
 
+
+
 What then, if we want to describe a model $f$ where the probability of occurrence is driven by both neutral changes in spatial distributions, environmental stochasticity, variability in traits in space and time, etc.? One can imagine constructing a monstrous likelihood function, compiled of distributions stack on top of each other forever. But if one wants to introduce covariance into these distributions, it quickly begins to require statistical expertise that is beyond what is reasonable for any non-practitioner of the field to know, especially for ecologists who are devoted to the management of a particular system and must also be asked to keep up with its natural history, etc. Thankfully, we have software like STAN which makes application of more complex models like this to be written and applied quickly, however such models still inevitably rely on assumptions about processes that have been abstracted away from the mechanism producing the data, and instead toward a statistical representation of a process that is subject to the pitfalls presented in Figure 1. 
 
 
