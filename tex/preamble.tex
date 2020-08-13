@@ -1,0 +1,85 @@
+
+% Table of contents formatting
+
+\setcounter{secnumdepth}{2}
+\addtocontents{toc}{\setcounter{tocdepth}{1}}
+
+\usepackage[left=1.5in,right=1.5in]{geometry}
+\setlength{\parskip}{12pt}
+
+% Headers and page numbering
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{  \nouppercase  \leftmark}
+\rhead{\thepage}
+
+% Table package
+\usepackage{ctable}% http://ctan.org/pkg/ctable
+
+\usepackage{titling}
+\pretitle{\begin{flushleft}\Large\bfseries}
+\posttitle{\end{flushleft}}
+\preauthor{\begin{flushleft}\large}
+\postauthor{\end{flushleft}}
+\predate{\begin{flushleft}\large}
+\postdate{\end{flushleft}}
+
+
+\usepackage{morefloats}
+% or use \extrafloats{100}
+% add some \clearpage
+
+\usepackage{sectsty}
+\usepackage[normalem]{ulem}
+\sectionfont{\rmfamily\bfseries\large}
+\subsectionfont{\rmfamily\bfseries\centering\upshape\normalsize}
+\subsubsectionfont{\rmfamily\mdseries\MakeUppercase\normalsize}
+
+% % Chapter header
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+
+
+\titleformat{\chapter}[display]
+{\normalfont\Large\bfseries}{Chapter\ \thechapter}{0em}{
+\vspace{-1em}
+}
+[
+\vspace{-2.8em}
+]
+
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+% FONTS
+\fontsize 12
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Mapping=tex-text} % converts LaTeX specials (``quotes'' --- dashes etc.) to unicode
+
+% CODE BLOCKS
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\DeclareMathSizes{12}{13}{7}{7}
+
+
+\usepackage{lineno}
+
+% Set figure legends and captions to be smaller sized sans serif font
+\usepackage{siunitx}
+
+% Adjust spacing between lines to double
+\usepackage{setspace}
+\raggedbottom
+
+\usepackage{hyperref}
+\usepackage{biblatex}
+
+% Tables
+
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{array}
+\newcolumntype{x}[1]{%
+{\centering\arraybackslash}m{#1}}%
