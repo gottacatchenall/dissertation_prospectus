@@ -196,7 +196,6 @@ function log_model(log, model)
             write(io, out)
         end
     end
-
 end
 
 model = DynamicsModel(num_species = 15)
