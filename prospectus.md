@@ -87,7 +87,11 @@ If $\hat{y} \approx  y$, we say our model $f$ is "good", and we Google "Nature s
 
 
 
-Many of the more popular methods (AIC, BIC, MDL, k-fold crossvalidation) exist as What separates science from philosophy? For most of recorded human history, science and philosophy were not separate disciplines, and most languages didn't have words to distinguish a scientist from a philosopher.
+Many of the more popular methods (AIC, BIC, MDL, k-fold crossvalidation) follow the hueristic that models should maximize the ratio of the information they provide in predictive power to the amount of information they contain in their definition. 
+
+
+
+What separates science from philosophy? For most of recorded human history, science and philosophy were not separate disciplines, and most languages didn't have words to distinguish a scientist from a philosopher.
 
 > In fact, the sciences, arts, and philosophies are all equally creators. . . Concepts do not wait for us ready-made, like celestial bodies. There is no heaven for concepts. They must be invented, fabricated, or rather created, and would be nothing without the signature of those who create them. (Deleuze & Guattari 1991)
 
@@ -95,27 +99,15 @@ I would contest science restricts itself to models that allow some interface bet
 
 
 
-To make a comparison between a model and "ground truth", there must be some way to observe and measure the concepts $A$. More formally, there must be some observation mapping $g: A \to \mathbb{R}^{d_1}$, where $d_1$ is the dimensionality of our measuremennt. And so scientific models inevitably create a mapping between observable states of the concepts as we define them, and quantitative predicted outcomes, $f : g(A) \to \mathbb{R}^{d_2}$. (Generally, $d_2 << d_1$, otherwise we've just found a new way of shuffling around the same information in the data.)
+To make a comparison between a model and "ground truth", there must be some way to observe and measure the concepts $A$. More formally, there must be some observation mapping $O: A \to \mathbb{R}^{d_1}$, where $d_1$ is the dimensionality of our measuremennt. And so scientific models inevitably create a mapping between observable states of the concepts as we define them, and quantitative predicted outcomes, $f : O(A) \to \mathbb{R}^{d_2}$. (Generally, $d_2 << d_1$, otherwise we've just found a new way of shuffling around the same information in the data.)
+
+In Halley's model $A = \{\text{Sun}, \text{Jupiter}, \text{Saturn}, \text{Earth}, \text{Comet} \}$, and $O(A) = \{\text{mass}, \text{position}, \text{momentum}\}$.
 
 
 
+And so those who are interested in (building, designing, using, etc.) models face the task of defining $f$ in such a way that it (hopefully) makes accurate predictions.
 
-
-In Halley's model $A = \{\text{Sun}, \text{Jupiter}, \text{Saturn}, \text{Earth}, \text{Comet} \}$, and $g(A) = \{\text{mass}, \text{position}, \text{momentum}\}$.
-
-And so the question for those who are interested in (building, designing, using, etc.) models face the task of defining $f$ in such a way that it (hopefully) makes accurate predictions.
-
-We can broadly split models into two types: process models and statistical models (@mcelreath).
-
-Other types of statistical models (typically those that fall under the ambiguous banner "machine learning") do not define $f$ with much regard towards the actual concepts in $A$ at all, but instead are cleverly designed algorithms which can accurately map input conditions to output conditions in some cases.
-
-
-
-Models do many different things: hypothesis testing, inference, parameter estimation, forecasting,etc.
-
-
-
-Often, when we do science, models are only a bridge between the data we collect and actual hypotheses. See the figure below from @mcelreath.
+We can broadly split models into two types: process models and statistical models (@mcelreath). Other types of statistical models (typically those that fall under the ambiguous banner "machine learning") do not define $f$ with much regard towards the actual concepts in $A$ at all, but instead are cleverly designed algorithms which can accurately map input conditions to output conditions in some cases. Models do many different things: hypothesis testing, inference, parameter estimation, forecasting,etc. Often, when we do science, models are only a bridge between the data we collect and actual hypotheses. See the figure below from @mcelreath.
 
 
 
@@ -145,7 +137,7 @@ As an example, consider fitting a species-distribution model (SDM), $y = f(x, \t
 
 In a frequentist world, the likelihood function is a ubiquitous tool  for parameter inference. Most off-the-shelf statistical 'tests', e.g. `model = lm(y ~ a*x + b)`, are simply a repackaged likelihood function that can be used to  estimate parameters via maximum likelihood or any other frequentist  estimation method.  Similarly, in a Bayesian world, the likelihood  function is essential in the application of Bayes' theorem to inference,
 
-$$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta)  P(\theta)}{P(\hat{x})} = \frac{\mathbb{L}(\hat{x}, \theta)  P(\theta)}{\int_\Theta \mathbb{L(\hat{x} | \theta)} P(\theta) d\theta}$$
+$$ P(\theta | \hat{x}) = \frac{P(\hat{x} | \theta)  P(\theta)}{P(\hat{x})} = \frac{\mathbb{L}(\hat{x}, \theta)  P(\theta)}{\int_\Theta \mathbb{L}(\hat{x} | \theta) P(\theta) d\theta}$$
 
 
 
@@ -193,6 +185,28 @@ Remaining questions:
 ## Community Structure
 
 The search for generality among ecological communities long flummoxed early ecologists, culminating in the aphorism that community ecology is "a mess" (citation).
+
+
+
+Early theoretical work on community structure begins with the Diversity-Stability "Paradox", largely attributed to  May's _Will a Large Complex System be Stable_ (@cite) and _Stability and Complex is Model Ecosystems_ (@cite). May's work considered both a linear system, $\dot{x} = A\vec{x}$, and a generalized Lotka-Volterra system, $\dot{x} = \vec{x} \odot (A \vec{x} + \vec{g})$, where $\vec{x}$ is a vector of abundances, $\vec{g}$ is a vector of change in abundance absent any comsumption and $A_{ij}$ between any species $i$ and $j$ is the interaction strength^[itself a term fraught with ambiguity] . 
+
+
+
+May' computations showed that as the number of species $N_s$ in the randomly generated food-web $A$ increased, the probability that the system persists approaches $0$. There is where the so-called 'paradox' lies--we observe food-webs in nature that are interwoven between far more species than we would expect under May's neutral model, and so naturally the study of complexity in food webs turned to both understanding the processes that structure food webs such that they can persist, and developing methods to infer the structure of ecological networks.  
+
+
+
+What is 'stable'? Fixed-point stability in a determinstic system. One can compute the stability of a fixed-point by checking if the eigenvalues of the Jacobian around any fixed point. For both of these model, the Jacobian around a fixed point is always the adjacency matrix, and so without computing any Jacobians we can simply check if $\{ \text{Re}(\lambda) < 0 \}  \ \ \forall\lambda$ to determine if the system has a fixed-point attractor. This is a method of computing Lyapunov-stability of a fixed point in a system, and was tractable for the computers of the time.
+
+May's used a generative model of community structure where all terms $$A_{ij} \sim Bernoulli(p)$$. This is the same as the graph generator $G(n,p)$, (Erdos). 
+
+Both in network science and ecology, generative models of network structure have turned to embedding the verticies in a latent space from which one follows a set of rules to determine which edges $A_{ij}$ exist. In ecology, the latent-space is typically a proxy for trophic-level or allometric scaling, beginning with the Cascase model (cite), drawing much more attention with the Niche model (@williams_martinez), and culminating in a generalized multi-dimensional niche model with a likelihood function that can be used to estimate latent parameters from empirical food webs.
+
+
+
+
+
+
 
 
 
@@ -302,10 +316,20 @@ Generative models?? Why do we need generative models--
 
 four parts:
 
-1. Community Model: the topology of the metaweb $A$, and the way the biomass flows through the metaweb, $\frac{\partial B}{\partial t}$
-2. Spatial Model: we have some set of locations ${x}$  in a spatial domain $S$. Each location $x$ is associated with a value of habitat suitability $H_i(x)$ for each species $i$, and a dispersal potential $\Phi_i(x \to y)$, which is the instantaneous probability that a unit of biomass from species $i$ moves from $x \to y \quad \forall x,y \in S$.
-3. Selection Model: how do the traits $T_i(x,t)$ of a species $i$  at a location $x$ at time $t$ change?   $\frac{\partial T_i(x,t)}{\partial t} = w (H_i(x,t), T_i(x,t))$
+1. Community Model: $\{A, \frac{\partial B}{\partial t}\}$
+
+   The topology of the metaweb $A$, and the way the biomass flows through the metaweb, $\frac{\partial B}{\partial t}$
+
+2. Spatial Model: $\{\Phi, L\}$
+
+   we have some set of locations ${x}$  in a spatial domain $S$. Each location $x$ is associated with a value of habitat suitability $H_i(x)$ for each species $i$, and a dispersal potential $\Phi_i(x \to y)$, which is the instantaneous probability that a unit of biomass from species $i$ moves from $x \to y \quad \forall x,y \in S$.
+
+3. Selection Model:
+
+    how do the traits $T_i(x,t)$ of a species $i$  at a location $x$ at time $t$ change?   $\frac{\partial T_i(x,t)}{\partial t} = w (H_i(x,t), T_i(x,t))$
+
    1. phylogenetic reading
+
 4. Community Summary Model  $C(\vec{B})$
 
 
@@ -387,12 +411,12 @@ $$\frac{\partial T_i(x,t)}{\partial t} = f(T_i(x), H_i(x))$$
 ## 4. Measuring (Meta)community Structure
 
 - $\hat{B}$ -- observed community at some time $t$ and some location $x_j$
-- types of measures of network structure
-  - $f({\hat{B}})$, singular.
-    - a measure of $\alpha$-div
+- types of measures of network structure, $C$ 
+  - $C({\hat{B}(L_i)})$, singular.
+    - a measure of $\alpha$-div at local community level
     - most classic measures, Shannon entropy, etc.
-  - $f(\hat{B}(x_j), \hat{B}(x_k))$, measure of difference between two networks, $\beta$-diversity
-  - $G(B)$ , measures of total structure across all locations (and times?),  $\gamma$-diversity
+  - $C(\hat{B}(x_j), \hat{B}(x_k))$, measure of difference between two networks, $\beta$-diversity
+  - $C(\hat{B})$ , measures of total structure across all locations (and times?),  $\gamma$-diversity
 
 
 \pagebreak
@@ -407,19 +431,43 @@ Okay...but how do you classify the 'stability' of a non-equilibrium system---
 
 
 
-![this is a caption](/home/michael/prospectus/figures/density_plot.jpg)
-
-
-
-ff
+![this is a caption](/home/michael/prospectus/figures/density_plot.png)
 
 
 
 
 
-![this is the punchline](/home/michael/prospectus/figures/different_scenarios.png)
+![Conceptual overview of Approximate Bayesian Computation (ABC). The version of an ABC Sampler presented here is methodologically the simplest (and original) version, based on using a simulated likelihood to run a rejection-based sampling MCMC algorithm. In panel 2 (top-right), to actually compute $\mathbb{L}(\hat{y} | \theta)$ from simulation outputs, traditionally one defineds an acceptance tolerance $\rho$, and accepts $\hat{y} - y_{sim} < \rho$ . Alternatively, one can run some regression on the on the simulation outcomes to get an analytic approximation of $\mathbb{L}(\hat{y} | \theta)$.  More recent improvements to ABC sampling deviate from simple rejection sampling algorithms for efficiency, e.g. doing rejection sampling whilst composing the simulated likelihood to reduce the amount of time spent running the simulation model in "bad" regions of parameter space---see Adaptive Monte Carlo [@beaumont_adaptive_2009] and Sequential Monte Carlo [@cite].](/home/michael/prospectus/figures/abc_conceputal.png)
 
-What does the software do?
+
+
+![This is the end goal of the dissertation. Build software that can forecast the future state of metacommunity structure under proposed forecasts of land-use/climate change, both for the data I apply it to, but also be generalizable to different systems.](/home/michael/prospectus/figures/different_scenarios.png)
+
+
+
+
+
+![From Poisot et al. (@poisot_2015). Original Caption _An illustration of the metaweb concept. In its simplest form, a metaweb is the list of all possible species and interactions between them for the system being studied, at the regional level (far left side)Everything that is ultimately observed in nature is a realisation of themetaweb (far right side), i.e. the resulting network after several sorting processes have occurred (central panel). First, species and species pairs have different probabilities to be observed (top panels). Second, as a consequence of the mechanisms we outline in this paper, not allinteractions have the same probability to occur at any given site (bottom panels, see Box 1)._](/home/michael/prospectus/figures/poisot_metaweb_figure.png)
+
+
+
+![From Gonzalez et al. (@gonzalez_bef_2020). Original caption: _Figure 5 Right: Satellite image of an agricultural landscape with remnant forest fragments. Left: Predictions for the change in BEF slope as the scale of
+observation increases for three landscapes with varying degrees of fragmentation (simulated data). Top row: Stylised landscapes with different patterns
+of fragmentation of forest habitat (dark green) and surrounding agriculture (white background): (a) homogeneous forest (x = northing, y = easting), (b)
+fragments with varying diversity (circle size) and productivity (circle greenness), with links indicating connectivity by seed dispersal, (c) isolated fragments
+with lower average diversity and productivity and fewer links. At each scale of observation, denoted by the coloured sampling windows in (a–c), species
+richness and productivity are measured at different locations across a landscape by sliding the window. Middle row: Change in the linear relationship
+between species richness and productivity at different scales of observation for each landscape type (d–f). Each coloured line is composed of measurements
+of species richness and productivity from multiple windows at a given scale. Species richness and productivity increases with the spatial scale of observation
+for all three landscape types but the form of the BEF relationship varies. Bottom row: Change in the BEF slope as a function of the scale of observation
+for each landscape type (g–i). Each point corresponds to the value of the slope of the line of same colour in the respective above figure. At a small
+sampling scale (orange window in (a)) the BEF slope is low and similar in all three landscape types (orange points in (g–i). At that scale, species richness
+and productivity are small and not affected by fragmentation (orange lines in (d–f)). At an intermediate sampling scale (red window in (a)), the BEF slope
+increases in all three landscape types. At that scale, sampling windows accounted for more species richness and higher level of productivity leading to stronger BEF effects. While fragmentation has reduced both biodiversity and productivity (red lines in (d–f)), no notable impact on the BEF slope is observed at this scale (red points (h–i)). At a large sampling scale (blue) the BEF slope decreases in the homogeneous landscape (a, d, g) since most species have already been sampled producing no additional biodiversity effects on productivity. However, when fragments are isolated (c), even if species richness and productivity are lower (f), a wide range of species richness and productivity are sampled (blue line in (f)) leading to an increase in BEF slope (blue point in (i)). The effect of species turnover on the BEF slope is also observed, although to a lesser degree, in the landscape with linked fragments (b, e, h) since species turnover is reduced by the ability of species to disperse across the landscape. At the largest sampling scale (green window in a) the BEF slopes decrease in all three landscape types but at different levels (green points in (g–i)). While productivity is higher at that scale, species richness is similar in all sampling windows (green lines in (d–f))._](/home/michael/prospectus/figures/gonzalez_ef_es.png)
+
+
+
+ What does the software do?
 
 - software that is modular and can be fit to data in real systems in multiple ways
   - you can provide, $A$, or $S$, different versions of a selection function $S$
@@ -516,6 +564,4 @@ Poisot 2014 model of interaction networks. Relates to the properties we can meas
 \pagebreak
 
 # References 
-
-\pagebreak
 
