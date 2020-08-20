@@ -47,8 +47,8 @@
 \date{}
 
 % Table of contents formatting
-\setcounter{secnumdepth}{2}
-\addtocontents{toc}{\setcounter{tocdepth}{1}}
+\setcounter{secnumdepth}{3}
+\addtocontents{toc}{\setcounter{tocdepth}{2}}
 
 \usepackage[left=1.5in,right=1.5in]{geometry}
 \setlength{\parskip}{12pt}
@@ -82,7 +82,7 @@
 \usepackage[normalem]{ulem}
 \sectionfont{\rmfamily\bfseries\large}
 \subsectionfont{\rmfamily\bfseries\centering\upshape\normalsize}
-\subsubsectionfont{\rmfamily\mdseries\MakeUppercase\normalsize}
+\subsubsectionfont{\rmfamily\mdseries\normalsize}
 
 % % Chapter header
 \usepackage{titlesec, blindtext, color}
@@ -199,8 +199,7 @@ We then conclude by outlining the structure of the proposed dissertation.
 \section{Introduction}\label{introduction}}
 
 When Edmond Halley predicted his now eponymous comet's return to Earth in 76 years in advance, it would have been wise to bet against him.
-Humans had been been trying to forecast the appearance of comets and meteors for millennia with little success.
-But Halley was the first to predict a comet's trajectory using the recently developed methods of Newtonian and Keplerian mechanics.
+Humans had been been trying to forecast the appearance of comets and meteors for millennia with little success, but Halley was the first to predict a comet's trajectory using the recently developed methods of Newtonian and Keplerian mechanics.
 Halley conjectured that past observations of "different" comets, each appearing roughly 76 years after the previous, were in fact the same object, and that the variability in the comet's period was attributable to the variable gravitational influence of Jupiter and Saturn.
 Halley's computations enabled him to successfully predict his comet's eventual return to Earth in 1758, and his prediction provided one of the foundational pieces of evidence for Kepler and Newton's models.
 Incidentally, Halley's success further fortified methodological reductionism as the principal tool of scientific epistemology.
@@ -276,13 +275,13 @@ chapter.
 %
 %       CHAPTER 2
 %
-%           models and data
+%          literature overview
 %
 % ________________________________________________________________________
 \hypertarget{literature-overview}{%
 \section{Literature Overview}\label{literature-overview}}
 
-Here we overview the literature in the fields surrounding the core questions of the dissertation.
+Here we overview the literature in the fields surrounding the core questions of the dissertation. One of the points of this is to acquaint the reader with what I've read to see where the gaps are.
 
 % ________________________________________________________________________
 %       section 2.1
@@ -340,8 +339,7 @@ Algorithmic models (which typically fall under the ambiguous banner
 actual concepts in \(A\) at all, but instead are cleverly designed
 algorithms which can accurately map input conditions to output
 conditions in some cases. In contrast, process models are based around
-the mechanisms that produce the data \citep{mcelreath_statistical_2020}). Process
-models can be conceptual, e.g.~``niche partitioning promotes
+the conceptual representations of the mechanisms that produce the data \citep{mcelreath_statistical_2020}). Process models can be purely conceptual, e.g.~``niche partitioning promotes
 coexistence'', or quantitative, e.g.~simulation models.
 
 Models do many different things: hypothesis testing, inference,
@@ -440,7 +438,7 @@ analytically tractable distribution, we can write down our likelihood
 \(\mathbb{L}(x | \theta)\) fairly easily:
 \[\mathbb{L}(\text{Species present at} \ {L} \ |\  \sigma) = \frac{1}{\sigma \sqrt{2\pi}} \exp \Big( \frac{-(T-E({L}))^2}{2\sigma^2} \Big)\]
 
-The ability to write our likelihood down in simple analytic terms means
+The ability to write our likelihood down in simple analytic termcan be compared to actual datas means
 that value of \(\mathbb{L}\) is straightforward to compute for any
 values of \(T, E(\vec{L}),\) or \(\sigma\), which is necessary for the
 majority of parameter inference methods. Once we estimate \(\sigma\), we
@@ -535,28 +533,19 @@ accepted is that energy has to go somewhere. The application of
 thermodynamics to trophic communities led to a renaissance in our
 understanding of food web structure. We directly had measurable things
 we could test against a model's expectation, like allometric scaling
-\citep{cohen_food_1977, gravel_trophic_2011},
-\citep{stouffer_robust_2006}) and metabolic energy-efficiency in
+\citep{cohen_food_1977, gravel_trophic_2011, stouffer_robust_2006}) and metabolic energy-efficiency in
 trophic interactions \citep{yodzis_body_1992}). This enabled us to
 develop more sophisticated models of both community structure, in the
-form of generative network models \citep{cohen_food_1977},
-\citep{williams_simple_2000} that can be fit to empirical food webs
-\citep{allesina_general_2008}. In parallel, network science has developed
+form of generative network models \citep{cohen_food_1977,williams_simple_2000} that can be fit to empirical food webs \citep{allesina_general_2008}, and the development of community
+dynamics models that are better rooted in thermodynamic constraints. Such models are rooted in MacArthur's Consumer-Resource model \cite{macarthur_cr}, with additional parameters added for metabolic efficiency and energy-use based on allometry \citep{yodzis_body_1992}. These models have much a much stronger empirical basis than LV-type models, but come with the trade-off of, in most cases, analytic intractability. Both these generative models of network structure and dynamics models have been used to study the stability of complex food webs \cite{allesina_stability_2012,allesina_predicting_2015}, and consider more dimensions of stability than May's fixed-point method \cite{dominguezpaper}, and an existing software library \texttt{BioEnergetic.jl} contains a set of generative network models, and a deterministic thermodynamic community model solver \citep{delmas_simulation_2017}.
+
+In parallel, network science has developed
 its own set of generative models for network structure which have
 several natural applications in food web ecology.
+One common feature of empirical ecological networks is they exhibit modularity and nestedness. Understanding the modular structure of networks \footnote{Confusingly, network scientists call this "community structure", but to avoid confusion with ecological communities, we'll avoid this word.} has been a consistent theme in the networks literature for many years \citep{newman, clauset}.
 Stochastic-Block-Models (SBMs) have seen extensive use for modular and
-nested network structures outside of ecology. There is a trade-off
-between good fit and mechanisms in an SBM--it doesn't tell you anything
-about the process making the data, it just learns how the network its
-structured in such a way that it can generate structurally similar
-networks. Further, this also led to the development of community
-dynamics models that are better rooted in thermodynamic constraints than
-LV \citep{yodzis_body_1992}, more recents) where each species
-\(i\) exhibits a "functional response" on species \(j\), which is
-proportional to how much biomass moves \(i \to j\) at any instant. A set
-of generative network models, and a deterministic thermodynamic
-community model exist as the software library as
-\texttt{BioEnergetic.jl} \citep{delmas_simulation_2017}.
+nested network structures outside of ecology. Although SBMs are good at detecting modularity and nestedness, there is a trade off between good-fit and information about the process generating the network structure. SBMs only detect patterns in data, they can not on their own tell us how communities are assembled.
+
 
 % ________________________________________________________________________
 %       section 2.3
@@ -603,7 +592,7 @@ availability of computer power in the 1990s enabled the first simulation
 models to be applied in spatial ecology. Many studies focused on the
 effects of habitat structure and loss by simulating occupancy dynamics
 on a lattice and measuring the probability of metapopulation persistence
-\citep{bascompte}, etc) .
+\citep{bascompte_habitat_1996}, etc) .
 
 Although TIBG and both Levins' and Hanski's metapopulation models rely
 on discrete-space constructions of space, a tension counter to discrete
@@ -618,13 +607,15 @@ and topography, abundance of abiotic resources like nitrogen and
 phosphorus, and so on. The properties used by both different satellites
 and different models vary widely in what they try to predict---from the
 level of coarse land-cover categorizations to the presence of particular
-species. Further, there is considerable variability in the spatial and
+species \citep{cite}. Further, there is considerable variability in the spatial and
 temporal scale at which data is collected--however, it is still hard to
 overstate the potential value of large-scale raster data in ecological
 forecasting, as we now have methods to build complex models of habitat
 suitability and dispersal using resistance surfaces \citep{cite}),
 which have the potential to integrate nicely with climate and land-use
-forecasting models derived from other fields (cite).
+forecasting models derived from other fields (\cite{dietze}).
+
+
 
 
 % ________________________________________________________________________
@@ -634,7 +625,7 @@ forecasting models derived from other fields (cite).
 \hypertarget{metacommunities}{%
 \subsection{Metacommunities}\label{metacommunities}}
 
-Leibold et al.~{[}\citep{leibold_metacommunity_2004}{]} introduced
+Leibold et al.~\citep{leibold_metacommunity_2004} introduced
 the metacommunity framework a synthesis of community and spatial
 ecology. They define four paradigms under which previous research on the
 interplay of community and spatial ecology can be categorized: 1) the
@@ -643,12 +634,12 @@ Mass-Effect Perspective, and 4) the Neutral perspective.
 
 Although understanding the effects of spatial processes on community
 structure has been a crucial part of the discipline since its rapid
-growth in the 1950s and 1960s \citep{macarthur},
-\citep{hutchinson}), this work only considered space solely as a
+growth in the 1950s and 1960s \citep{hutchinson_ecological_1973},
+\citep{chase_ecological_2003}), this work only considered space solely as a
 domain across the environment varies--- each species was considered a
 static object in space in time, which are distributed according to
 selection on environmental variables. This forms the theoretical basis
-for niche theory as a mechanism behind community assembly, or what
+for niche theory \citep{hutchinson_ecological_1973,chase_ecological_2003}, as a mechanism behind community assembly, or what
 Leibold et al.~call the Species-Sorting perspective of metacommunity
 dynamics. The Patch-Dynamics perspective is rooted in the TIBG from
 above--occupancy dynamics on discrete, internally homogeneous
@@ -663,23 +654,22 @@ space, beyond than the variability attributable to the inherent
 stochasticity of population dynamics.
 
 The methods used in each of the domains of these paradigms often
-differed drastically---however Velland 2010 \citep{velland}) argues
+differed drastically---however Velland 2010 \citep{vellend_conceptual_2010} argues
 that within each of these four perspectives we see the same four
 fundamental processes driving dynamics, just in different amounts.
-Velland's four processes are selection, dispersal, drift, and
-speciation--functionally the same as the four fundamental processes in
+Velland's four processes are Selection, Dispersal, Drift, and
+Speciation--functionally the same as the four fundamental processes in
 evolutionary genetics, which similarly deals with shifting compositions
 of units of over space and time, the difference being that evolutionary
 genetics deals with alleles, not species. These fundamental processes
 have been used in recent years to develop \emph{process-based} models of
-metacommunity dynamics, which can be compared to actual data
+metacommunity dynamics, which aim to provide a mechanistic explanation of metacommunity structure
 \citep{poisot_2014}, \citep{thompson}).
 
-One question remains---at what different levels of each of the four
+Several questions remain---at what different levels of each of the four
 processes do communities move between Leibold et al.'s four
 prespectives?
 
-\pagebreak
 
 
 % ________________________________________________________________________
@@ -799,7 +789,7 @@ Here, we divide our metacommunity model into four parts:
 
   Finally, the Community Summary model is a summary statistic which maps
   from the observed state of biomass abundance (or occupancy)
-  \(\hat{B}\) at some place and time to a value that represents
+  \(\hat{B}\) at some place and time to a value that representscan be compared to actual data
   community structure, e.g.~Shannon-entropy as a measure of
   \(\alpha\)-diversity. \(C\) could also be a measure of \(\beta\) or
   \(\gamma\)-diversity. If we are using a measure of
@@ -830,14 +820,17 @@ Here, we describe how we will implement this metacommunity model as a
 modular toolbox of software to simulate metacommunity dynamics that
 interfaces with actual data and can be applied forecast in real systems.
 
+\hypertarget{interfacing-with-generative-models-and-data}{%
+\subsubsection{Building an Instance of the Model}
+\label{interfacing-with-generative-models-and-data}}
 In Figure 5 we can see how the conceptual objects in our metacommunity
 model
 \(A = \{B, L, M, T, \Phi, H, C, \frac{\partial B}{\partial t}, \frac{\partial T}{\partial t} \}\)
 can interface with both generative models for the sake of using the
-software as a ``virtual laboratory'' {[}\citep{volker_grimm}{]} and
+software as a ``virtual laboratory'' \citep{volker_grimm} and
 empirical data to forecast in real systems. The point is not necessarily
 to vary all elements at once, but instead to have a modular set of tools
-that cover a wide variety of use-cases.
+that cover a wide variety of use-cases. For example, if for a given use-case, selection is not a relevant part of the question being asked, one could remove selection on traits from the model entirely.
 
 \begin{figure}[H]
 \centering
@@ -848,8 +841,11 @@ that cover a wide variety of use-cases.
 
 
 \hypertarget{finding-the-pseudoequilibria-of-our-metacommunity-model}{%
-\subsubsection{Findsissoning the pseudoequilibria of our metacommunity
-model}\label{finding-the-pseudoequilibria-of-our-metacommunity-model}}
+\subsubsection{Describing Metacommunity Dynamics}
+\label{finding-the-pseudoequilibria-of-our-metacommunity-model}}
+
+For any given instance of a model $\hat{A} = \{B, L, M, T, \Phi, H, C, \frac{\partial B}{\partial t}, \frac{\partial T}{\partial t} \}$, one can then simulate the dynamics of the community, at which point we have a sampled trajectory $B(t) \ \ \forall t \in \tau$ where $\tau$ is the simulation time domain. From this, we apply our summary statistic $C(B(t)) \ \ \forall t \in \tau$, and we have a trajectory in summary statistic space $\Omega$---see figure ref. After running our model for many replicates, we can compute a density over the state-space $\Omega$ which represents the proportion of time the model spent in that part of $\Omega$. Do most models tend to converge to a small area of $\Omega$, and sit in pseudoequilibrium?
+
 
 \begin{figure}[H]
 \centering
@@ -858,28 +854,62 @@ model}\label{finding-the-pseudoequilibria-of-our-metacommunity-model}}
 \end{figure}
 
 \hypertarget{fitting-to-data-with-abc}{%
-\subsubsection{Fitting to data with
+\subsubsection{Fitting Simulations to Data with
 ABC}\label{fitting-to-data-with-abc}}
 
-\begin{figure}[H]
-\centering
-\includegraphics{/home/michael/prospectus/figures/abc_conceputal.png}
-\caption{Conceptual overview of Approximate Bayesian Computation (ABC).
+In order to fit this metacommunity model to real data, we'll build an ABC sampler which takes in a definition of a simulation model $\hat{A}$
+and a set of priors with hyperparameters
+$\text{Priors}(\chi)$ as inputs, and estimates the posterior distribution---see Figure acb.
+
 The version of an ABC Sampler presented here is methodologically the
 simplest (and original) version, based on using a simulated likelihood
-to run a rejection-based sampling MCMC algorithm. In panel 2
-(top-right), to actually compute \(\mathbb{L}(\hat{y} | \theta)\) from
-simulation outputs, traditionally one defineds an acceptance tolerance
-\(\rho\), and accepts \(\hat{y} - y_{sim} < \rho\) . Alternatively, one
-can run some regression on the on the simulation outcomes to get an
-analytic approximation of \(\mathbb{L}(\hat{y} | \theta)\). More recent
+to run a rejection-based sampling MCMC algorithm. In the
+top-right panel of figure ref, to actually compute \(\mathbb{L}(\hat{y} | \theta)\) from
+simulation outputs under \cite{beaumont_adaptive_2003}, one defines an acceptance tolerance
+\(\rho\), and accepts $\mathbb{L}(y_{sim} | \theta) = \mathbb{L}(\hat{y} | \theta)$ if \(|\hat{y} - y_{sim}| < \rho\) . Alternatively, one
+can run a regression on the on the simulation outcomes to get an
+analytic approximation of \(\mathbb{L}(\hat{y} | \theta)\) \cite{whodidthis}. More recent
 improvements to ABC sampling deviate from simple rejection sampling
 algorithms for efficiency, e.g.~doing rejection sampling whilst
 composing the simulated likelihood to reduce the amount of time spent
 running the simulation model in ``bad'' regions of parameter space---see
 Adaptive Monte Carlo \citep{beaumont_adaptive_2009} and Sequential
-Monte Carlo \citep{cite}.}
+Monte Carlo \citep{cite}.
+
+To do this, the sampler draws a set of parameters
+ $\hat{\theta} \sim \text{Priors}(\chi)$
+and runs the simulation procedure described in the previous section to describe a density in
+$\Omega$ that approximates the likelihood function,
+$\mathbb{L}(C(B) | \hat{\theta})$, and then uses this approximated likelihood to estimate the posterior distribution
+$P(\theta | \hat{y})$.
+
+\begin{figure}[H]
+\centering
+\includegraphics{/home/michael/prospectus/figures/abc_conceputal.png}
+\caption{Conceptual overview of an Approximate Bayesian Computation (ABC) Sampler.
+}
 \end{figure}
+
+If we have several competing simulation models or sets of hyperpriors, we can compare them using information criterion to see which one best describes the data.
+
+
+\hypertarget{choosing-models-and-priors}{%
+\subsubsection{Choosing Models and Priors}\label{choosing-models-and-priors}}
+
+In order to select which version of a simulation model (e.g. deterministic vs. stochastic dispersal) and set of priors gives our model the most predictive power, we need a method for applying an information criterion to a set of models and priors--see figure not done yet.
+
+\hypertarget{forecasting}{%
+\subsubsection{Forecasting}\label{forecasting}}
+
+Once we've estimated the best fitting posterior distribution $P(\theta | \hat{y})$, we can use it for forecasting via the best fitting simulation model. We can simply draw $\hat{\theta} \sim P(\theta | \hat{y})$ and run the dynamics model forward. After doing this many times, we get a density of predicted outcomes across the time domain $\tau$. If we have a forecasted model of land-use or climate change, we can also use that as an input into the model to shift $E_i(L, t)$ and $H_i(L,t)$ over time as well.
+
+\begin{figure}[H]
+\centering
+\includegraphics{/home/michael/prospectus/figures/different_scenarios.png}
+\caption{this is a caption}
+\end{figure}
+
+
 
 % ________________________________________________________________________
 %
@@ -888,20 +918,59 @@ Monte Carlo \citep{cite}.}
 %           dissertation outline
 %
 % ________________________________________________________________________
-
+\clearpage
 \hypertarget{dissertation-outline}{%
 \section{Dissertation Outline}\label{dissertation-outline}}
 
-\clearpage
-\bibliography{refs}
+Here, we outline the structure of the five planned dissertation chapters.
 
+\subsection{Chapter One}
+
+An Introduction and Review Chapter, looks a lot like this document. 
+
+
+\subsection{Chapter Two}
+
+A Chapter about the Model, detailing the software and potentially applying it to reasonable data sets.
+This chapter would be aimed at Methods in EcoEvo probably.
+
+\subsection{Chapter Three}
+
+Using the model as a virtual laboratory \citep{rollsback_agent_2005} to determine at what spatial scales do community assembly processes go from neutral to niche-based? We know that niche/neutrality are not opposing forces but instead shift along a continium (cite).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics{/home/michael/prospectus/figures/gonzalez_ef_es.png}
+\caption{this is a caption}
+\end{figure}
+
+\subsection{Chapter Four}
+\subsection{Chapter Five}
+
+
+
+
+
+
+% ________________________________________________________________________
+%
+%       REFERENCES
+%
+%
+% ________________________________________________________________________
+\clearpage
+{
+\footnotesize
+\bibliography{refs}
+}
 There is still a reliance on summary statistics, but if summary
-statistics are not differentiable even when the generative process is
-different, that itsesissonlf is interesting, and, in general, simulation
+statistics are not differentiable even when the  generative process is
+different, that is in itself is interesting, and, in general, simulation
 models are excellent testing grounds for the biases of summary
 statistics (see Jost's D vs Fst etc).
 
-In the ``virtual laboratory'' case, the parameter values often are meant
+In the "virtual laboratory" case, the parameter values often are meant
 to encapsulate the the entire spectrum of possible values, are based in
 what the researcher (or reviewers) find interesting. In the second case,
 parameter inference is vital in producing useful predictions.
