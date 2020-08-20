@@ -7,8 +7,10 @@
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 
-
+\usepackage{longtable}
 \usepackage{graphicx}
+\usepackage[table]{xcolor}
+
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
 \def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
@@ -82,7 +84,7 @@
 \usepackage[normalem]{ulem}
 \sectionfont{\rmfamily\bfseries\large}
 \subsectionfont{\rmfamily\bfseries\centering\upshape\normalsize}
-\subsubsectionfont{\rmfamily\mdseries\normalsize}
+\subsubsectionfont{\rmfamily\itshape\centering\normalsize}
 
 % % Chapter header
 \usepackage{titlesec, blindtext, color}
@@ -116,7 +118,6 @@
 \usepackage[font={footnotesize,sf}]{caption}
 \usepackage{siunitx}
 
-% Adjust spacing between lines to double
 \usepackage{setspace}
 \linespread{1.2}
 \raggedbottom
@@ -211,7 +212,7 @@ not exist when we reduce a system down to its individual parts.
 For example, consider the Lotka-Volterra model.
 Much like the model of Newtonian gravity Halley applied to his comet, LV is written in the
 language of coupled differential equations
-\footnote{The reality is computing the gravitational dynamics of more than two bodies of comparable mass is, much like ecological modeling, tough. Halley was able to work around the infamous n-body problem, but modern astrodynamicists use simulation models for many of the same reasons we advocate their use in ecology, coming up in the main text.}.
+\footnote{The reality is computing the gravitational dynamics of more than two bodies of comparable mass is, much like ecological modeling, tough. Halley was able to work around the infamous n-body problem, but modern astrodynamicists use simulation models for many of the same reasons we advocate their use in ecology, coming up in the main text.}.\renewcommand*{\arraystretch}{1.4}
 The characteristic feature of the two-species LV model are its boom-and-bust limit cycles, and this qualitative behavior is observed in many systems (cite).
 In controlled settings, LV can make fairly good predictions about the abundances of predator and prey, but in complex ecosystems, the \(n\)-species generalized LV model doesn't succeed predicting the true abundances in most systems with much accuracy, 76 years out or otherwise.
 This is not to say LV is not interesting and worthy of study in its own right---it is what Okubo (1972) calls a "toy model" (\cite{okubo_diffusion_2001})---an intentional oversimplification that can reveal fundamental mechanisms driving the dynamics of real systems.
@@ -341,7 +342,7 @@ algorithms which can accurately map input conditions to output
 conditions in some cases. In contrast, process models are based around
 the conceptual representations of the mechanisms that produce the data \citep{mcelreath_statistical_2020}). Process models can be purely conceptual, e.g.~``niche partitioning promotes
 coexistence'', or quantitative, e.g.~simulation models.
-
+\renewcommand*{\arraystretch}{1.4}
 Models do many different things: hypothesis testing, inference,
 parameter estimation, forecasting,etc. Often, when we do science, models
 are only a bridge between the data we collect and actual hypotheses. See
@@ -488,7 +489,7 @@ Networks}\label{the-structure-of-ecological-networks}}
 
 The search for generality among ecological communities long flummoxed
 early ecologists, culminating in the aphorism that community ecology is
-"a mess" \citep{citation_original}, \citep{vellend_conceptual_2010}).
+"a mess" \citep{lawton_1999, simberloff_2004}. However, the seeming lack of universally applicable laws  \citep{vellend_conceptual_2010}).
 
 Early theoretical work on community structure begins with the
 Diversity-Stability "Paradox", largely attributed to May \citep{may_will_1972,may_stability_2001}). May found, contrary
@@ -537,7 +538,7 @@ we could test against a model's expectation, like allometric scaling
 trophic interactions \citep{yodzis_body_1992}). This enabled us to
 develop more sophisticated models of both community structure, in the
 form of generative network models \citep{cohen_food_1977,williams_simple_2000} that can be fit to empirical food webs \citep{allesina_general_2008}, and the development of community
-dynamics models that are better rooted in thermodynamic constraints. Such models are rooted in MacArthur's Consumer-Resource model \cite{macarthur_cr}, with additional parameters added for metabolic efficiency and energy-use based on allometry \citep{yodzis_body_1992}. These models have much a much stronger empirical basis than LV-type models, but come with the trade-off of, in most cases, analytic intractability. Both these generative models of network structure and dynamics models have been used to study the stability of complex food webs \cite{allesina_stability_2012,allesina_predicting_2015}, and consider more dimensions of stability than May's fixed-point method \cite{dominguezpaper}, and an existing software library \texttt{BioEnergetic.jl} contains a set of generative network models, and a deterministic thermodynamic community model solver \citep{delmas_simulation_2017}.
+dynamics models that are better rooted in thermodynamic constraints. Such models are rooted in MacArthur's Consumer-Resource model \cite{macarthur_cr}, with additional parameters added for metabolic efficiency and energy-use based on allometry \citep{yodzis_body_1992}. These models have much a much stronger empirical basis than LV-type models, but come with the trad\renewcommand*{\arraystretch}{1.4}e-off of, in most cases, analytic intractability. Both these generative models of network structure and dynamics models have been used to study the stability of complex food webs \cite{allesina_stability_2012,allesina_predicting_2015}, and consider more dimensions of stability than May's fixed-point method \cite{dominguezpaper}, and an existing software library \texttt{BioEnergetic.jl} contains a set of generative network models, and a deterministic thermodynamic community model solver \citep{delmas_simulation_2017}.
 
 In parallel, network science has developed
 its own set of generative models for network structure which have
@@ -571,7 +572,7 @@ considered as system of isolated patches, each either occupied or
 unoccupied in time. The proportion of patches \(p\) occupied at any time
 was modeled as
 
-\[\frac{dp}{dt} = pc(1-p) - cp\]
+\[\frac{dp}{dt} = cp(1-p) - ep\]
 
 where \(c\) is the instantaneous probability of colonization and \(e\)
 is the instantaneous probability of extinction of any given patch. From
@@ -607,8 +608,7 @@ and topography, abundance of abiotic resources like nitrogen and
 phosphorus, and so on. The properties used by both different satellites
 and different models vary widely in what they try to predict---from the
 level of coarse land-cover categorizations to the presence of particular
-species \citep{cite}. Further, there is considerable variability in the spatial and
-temporal scale at which data is collected--however, it is still hard to
+species \citep{cite}. Further, there is considerable variability in the spatial and temporal scale at which data is collected--however, it is still hard to
 overstate the potential value of large-scale raster data in ecological
 forecasting, as we now have methods to build complex models of habitat
 suitability and dispersal using resistance surfaces \citep{cite}),
@@ -665,6 +665,8 @@ genetics deals with alleles, not species. These fundamental processes
 have been used in recent years to develop \emph{process-based} models of
 metacommunity dynamics, which aim to provide a mechanistic explanation of metacommunity structure
 \citep{poisot_2014}, \citep{thompson}).
+
+biodiversity/ef/es relationship. know the least about this.
 
 Several questions remain---at what different levels of each of the four
 processes do communities move between Leibold et al.'s four
@@ -754,24 +756,24 @@ Here, we divide our metacommunity model into four parts:
   or small scales (resistance surfaces/land use) or can be generated
   using any number of methods for generating spatially auto-correlated
   data---see Figure 3. Finally, the spatial model includes a dispersal
-  potential \([\Phi^{(i)}_{xy}]\), which is the instantaneous
+  potential \([\Phi^{(i)}_{xy}]\), which is the instantaneous\renewcommand*{\arraystretch}{1.4}
   probability that a unit of biomass from species \(i\) moves from
   \(x \to y \quad \forall x,y \in S\). The value of \(\Phi^{(i)}_{xy}\)
   is derivable from a resistance surface produced via Curcuitscape
-  {[}\citep{cite}{]}, or can be modeled as a function of
+  \citep{cite}, or can be modeled as a function of
   isolation-by-distance using a dispersal kernel \citep{hanski}, who
   knows all of them).
 
   \begin{figure}[H]
   \centering
   \includegraphics{/home/michael/prospectus/figures/different_spatial_models_w_labels.png}
-  \caption{this is a caption}
+  \caption{Three different representations of landscape structure often used in ecology (patches, spatial graph, lattice/raster). Each of these spatial models consist of discrete locations $L_i$ in a spatial domain $S$. Each $L_i$ interacts with $L_j$ according to the dispersal potential $\Phi$, see main text.}
   \end{figure}
 
   \begin{figure}[H]
   \centering
   \includegraphics{/home/michael/prospectus/figures/habitat suitability w labels.png}
-  \caption{this is a caption}
+  \caption{Methods for creating a spatial model of habitat suitability for a species $j$. On large scales, habitat suitability is approximated by species distribution models. At smaller scales, land-use models and resistance surfaces }
   \end{figure}
 \item
   \textbf{Selection Model}: \(\{ E, T, \frac{\partial T}{\partial t}\}\)
@@ -780,8 +782,8 @@ Here, we divide our metacommunity model into four parts:
   \(i\) at a location \(L\), and some function
   \(\frac{\partial T}{\partial t}\) which describes how \(T_i(L)\)
   changes over time as a function of both \(E(L)\) and \(T_i(L)\), which
-  has several candidates from early evolutionary biology
-  \citep{cite}). Further, the selection model could include some
+  has several candidates from evolutionary biology
+  \citep{price_selection_1970, queller_fundamental_2017}. Further, the selection model could include some
   measure of speciation based on differences in \(T_i\), however it
   doesn't directly relate to the questions in the proposed chapters.
 \item
@@ -886,8 +888,7 @@ $P(\theta | \hat{y})$.
 \begin{figure}[H]
 \centering
 \includegraphics{/home/michael/prospectus/figures/abc_conceputal.png}
-\caption{Conceptual overview of an Approximate Bayesian Computation (ABC) Sampler.
-}
+\caption{}
 \end{figure}
 
 If we have several competing simulation models or sets of hyperpriors, we can compare them using information criterion to see which one best describes the data.
@@ -897,6 +898,8 @@ If we have several competing simulation models or sets of hyperpriors, we can co
 \subsubsection{Choosing Models and Priors}\label{choosing-models-and-priors}}
 
 In order to select which version of a simulation model (e.g. deterministic vs. stochastic dispersal) and set of priors gives our model the most predictive power, we need a method for applying an information criterion to a set of models and priors--see figure not done yet.
+
+
 
 \hypertarget{forecasting}{%
 \subsubsection{Forecasting}\label{forecasting}}
@@ -926,19 +929,48 @@ Here, we outline the structure of the five planned dissertation chapters.
 
 \subsection{Chapter One}
 
-An Introduction and Review Chapter, looks a lot like this document. 
+An Introduction and Review Chapter, looks a lot like this document.
 
+What Questions Does this Answer? Submission?
 
 \subsection{Chapter Two}
 
-A Chapter about the Model, detailing the software and potentially applying it to reasonable data sets.
+A chapter about the model, detailing the software and potentially applying it to reasonable data sets.
 This chapter would be aimed at Methods in EcoEvo probably.
+
+Major questions and themes
+\begin{itemize}
+    \item What are different summary statistics used for ecological networks, and how do they vary?
+\end{itemize}
+
+
+
+Hopefully use for inference in LEAP data as an empirical example in the actual paper.
+
 
 \subsection{Chapter Three}
 
 Using the model as a virtual laboratory \citep{rollsback_agent_2005} to determine at what spatial scales do community assembly processes go from neutral to niche-based? We know that niche/neutrality are not opposing forces but instead shift along a continium (cite).
 
+Major Points
 
+\begin{itemize}
+    \item Using the metacommunity model simulated across different spatial scales
+          to determine the boundaries between Leibold et al.'s four paradigms ove community assembly.
+    \item How does landscape connectivity
+    \item Stability of 
+\end{itemize}
+
+
+Major Questions
+\begin{itemize}
+    \item At what spatial scales does commmunity assembly shift from being driven by neutral to niche processes?
+    \item At what proportions of selection, dispersal, and drift so we move in-between Leibold et al.'s four paradigms?
+
+\end{itemize}
+
+
+\renewcommand*{\arraystretch}{1.4}
 \begin{figure}[H]
 \centering
 \includegraphics{/home/michael/prospectus/figures/gonzalez_ef_es.png}
@@ -946,12 +978,245 @@ Using the model as a virtual laboratory \citep{rollsback_agent_2005} to determin
 \end{figure}
 
 \subsection{Chapter Four}
+
+Using the model with a small dataset (one metacommunity with temporal data) --- forecast this local system in face of climate/land use.
+
+\begin{itemize}
+    \item How much variance is there in our predictions between different simulation models?
+\end{itemize}
+
 \subsection{Chapter Five}
 
+Using the model with large dataset (many ecological networks) to see which processes are most likely driving each network, and to forecast community structure using whatever SDM/Habitat suitability models I can get for species in the dataset for forecasting large-scale/global trends in community structure.
+
+Mangal is a database of ecological networks--however, many parts of the globe are not represented.
+
+\begin{enumerate}
+    \item
+\end{enumerate}
+
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+- Build software
+- Do more research about what type of data is available and formulate questions for those chapters based on what data there is
 
 
 
 
+
+
+\hypertarget{table-of-symbols}{%
+\section{Table of Symbols}\label{table-of-symbols}}
+\renewcommand*{\arraystretch}{1.6}
+
+\rowcolors{2}{gray!10}{white}
+\begin{longtable}[]{@{}ccl@{}}
+\toprule
+\begin{minipage}[b]{0.25\columnwidth}\centering
+Name\strut
+\end{minipage} & \begin{minipage}[b]{0.23\columnwidth}\centering
+Symbol\strut
+\end{minipage} & \begin{minipage}[b]{0.42\columnwidth}\raggedright
+Meaning\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Concept Space\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(A\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the set of conceptual objects designed to represent scientific one could
+define in a scientific model \(f\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+State Space\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\Omega\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the set of possible states a given system (respresented using a concept
+set \(A\)) could exist in at any given time. \(\Omega\) can be thought
+of as the span of \(O(A)\).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Observation Function\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(O\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+a function which maps conceptual objects in our models to observations,
+which typically (but not necessarily) take the form of real
+numbers\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Scientific Model\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(f\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the set of conceptual objects designed to represent scientific one could
+define in a scientific model\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Parameter Space\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\Theta\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the set of possible values the parameters \(\theta\) of a model \(f\)
+could have\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Dispersal Potential\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\Phi_{ij}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the probability that an individual born in \(i\) dies in \(j\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Spatial Domain\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(S\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the space in which spatial locations \(L\) are represented as
+coordinates\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Spatial Locations\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(L\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the set of locations \(L_i \in S\) , each with a coordinate\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Probability Space\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\mathbb{P}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the combined set of a state space \(\Omega\), a \(\sigma\)-algebra of
+events within the set the states, \({F} \in \Omega\) , and a probability
+measure \(P\) which maps any \({F} \in \Omega\) to a number between
+\(0\) and \(1\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Trait Distribution\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(T_i(x,t)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the distribution of traits at population \(i\) as a function of time.
+here \(T_i(x,t)\) is a probability density function over \(x \in [0,1]\)
+for any given population \(i\).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Bioenergetic Model\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\[\frac{\partial B}{\partial t}\]\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+describes the flow of energy stored as biomass on a food web\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Likelihood Function\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\mathbb{L}(\hat{x} | \theta)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+a mapping from a combination of state and parameter values to a
+probability of that combination occurring under some model \(f\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Posterior Distribution\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(P(\theta | \hat{x})\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the probability distribution of a parameter \(\theta\) given some data
+\(\hat{x}\) and a prior \(P(\theta)\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Prior Distribution\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(P(\theta)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+an a priori estimate of the distribution of a parameter \(\theta\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Parameters\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\theta\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the parameters of any given model \(f\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Metaweb\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(M\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+a network of possible interactions between species, typically
+represented as an adjacency matrix\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Biomass Vector\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\vec{B}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Biomass vector observation\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\hat{B}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Community Structure Summary Function\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(C(\hat{B})\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Habitat Suitability Function\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(H_i(L_j,t)\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+the habitat suitability of species \(i\) and locations \(L_j\) at time
+\(t\)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Set of species\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\mathbb{S}\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+Time domain\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\(\tau\)\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.25\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.23\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
 
 % ________________________________________________________________________
 %

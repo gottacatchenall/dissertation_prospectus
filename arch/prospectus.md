@@ -532,33 +532,33 @@ Poisot 2014 model of interaction networks. Relates to the properties we can meas
 
 
 
-|                 Name                 |              Symbol               | Mapping (if a function)                                      | Meaning                                                      |
-| :----------------------------------: | :-------------------------------: | :----------------------------------------------------------- | ------------------------------------------------------------ |
-|            Concept Space             |                $A$                | -                                                            | the set of conceptual objects designed to represent scientific one could define in a scientific model $f$ |
-|             State Space              |             $\Omega$              | -                                                            | the set of possible states a given system (respresented using a concept set $A$) could exist in at any given time. $\Omega$ can be thought of as the span of  $O(A)$. |
-|         Observation Function         |                $O$                | $O : A \to \Omega$                                           | a function which maps conceptual objects in our models to observations, which typically (but not necessarily) take the form of real numbers |
-|           Scientific Model           |                $f$                | $f : O(A) \to \Omega$                                        | the set of conceptual objects designed to represent scientific one could define in a scientific model |
-|           Parameter Space            |             $\Theta$              |                                                              | the set of possible values the parameters $\theta$ of a model $f$ could have |
-|         Dispersal Potential          |            $\Phi_{ij}$            | $\Phi : (L \times L) \to \mathbb{P}$                         | the probability that an individual born in $i$ dies in $j$   |
-|            Spatial Domain            |                $S$                | -                                                            | the space in which spatial locations $L$ are represented as coordinates |
-|          Spatial Locations           |                $L$                | -                                                            | the set of locations $L_i \in S$ , each with a coordinate    |
-|          Probability Space           |           $\mathbb{P}$            | $P: {F} \to [0,1]$                                           | the combined set of a state space $\Omega$, a $\sigma$-algebra of events within the set the states, ${F} \in \Omega$ , and a probability measure $P$ which maps any ${F} \in \Omega$  to a number between $0$ and $1$ |
-|          Trait Distribution          |            $T_i(x,t)$             | $T: L \to \mathbb{P}$                                        | the distribution of traits at population $i$ as a function of time. here $T_i(x,t)$ is a probability density function over $x \in [0,1]$  for any given population $i$. |
-|          Bioenergetic Model          | $$\frac{\partial B}{\partial t}$$ | $$\frac{\partial B}{\partial t} : \mathbb{R}^{N_{s}} \to \mathbb{R}^{N_s}$$ | describes the flow of energy stored as biomass on a food web |
-|         Likelihood Function          |  $\mathbb{L}(\hat{x} | \theta)$   | $\mathbb{L} : (\Omega \times \Theta) \to \mathbb{P}$         | a mapping from a combination of  state and parameter values to a probability of that combination occurring under some model $f$ |
-|        Posterior Distribution        |       $P(\theta | \hat{x})$       | $P(\theta | \hat{x}) : (\Omega \times \Theta) \to \mathbb{P}$ | the probability distribution of a parameter $\theta$ given some data $\hat{x}$ and a prior $P(\theta)$ |
-|          Prior Distribution          |            $P(\theta)$            | $P(\theta) : \Theta \to P$                                   | an a priori estimate of the distribution of a parameter $\theta$ |
-|              Parameters              |             $\theta$              |                                                              | the parameters of any given model $f$                        |
-|               Metaweb                |                $M$                |                                                              | a network of possible interactions between species, typically represented as an adjacency matrix |
-|          Metaweb Parameters          |            $\theta_M$             |                                                              | the parameters for a generative model of metaweb topology    |
-|    Bioenergetic Model Parameters     |            $\theta_B$             |                                                              | the parameters for a bioenergetic model $\frac{\partial B}{\partial t}$ |
-|            Biomass Vector            |             $\vec{B}$             |                                                              | a vector of the biomasses of each species $i \in \mathbb{S}$ |
-|      Biomass vector observation      |             $\hat{B}$             |                                                              |                                                              |
-| Community Structure Summary Function |           $C(\hat{B})$            | f                                                            |                                                              |
-|     Habitat Suitability Function     |           $H_i(L_j,t)$            | $H : ( L \times \mathbb{S} \times \tau) \to [0,1]$           | the habitat suitability of species $i$ and locations $L_j$ at time $t$ |
-|            Set of species            |           $\mathbb{S}$            |                                                              |                                                              |
-|             Time domain              |              $\tau$               |                                                              |                                                              |
-|                                      |                                   |                                                              |                                                              |
+|                 Name                 |              Symbol               | Meaning                                                      |
+| :----------------------------------: | :-------------------------------: | :----------------------------------------------------------- |
+|            Concept Space             |                $A$                | the set of conceptual objects designed to represent scientific one could define in a scientific model $f$ |
+|             State Space              |             $\Omega$              | the set of possible states a given system (respresented using a concept set $A$) could exist in at any given time. $\Omega$ can be thought of as the span of  $O(A)$. |
+|         Observation Function         |                $O$                | a function which maps conceptual objects in our models to observations, which typically (but not necessarily) take the form of real numbers |
+|           Scientific Model           |                $f$                | the set of conceptual objects designed to represent scientific one could define in a scientific model |
+|           Parameter Space            |             $\Theta$              | the set of possible values the parameters $\theta$ of a model $f$ could have |
+|         Dispersal Potential          |            $\Phi_{ij}$            | the probability that an individual born in $i$ dies in $j$   |
+|            Spatial Domain            |                $S$                | the space in which spatial locations $L$ are represented as coordinates |
+|          Spatial Locations           |                $L$                | the set of locations $L_i \in S$ , each with a coordinate    |
+|          Probability Space           |           $\mathbb{P}$            | the combined set of a state space $\Omega$, a $\sigma$-algebra of events within the set the states, ${F} \in \Omega$ , and a probability measure $P$ which maps any ${F} \in \Omega$  to a number between $0$ and $1$ |
+|          Trait Distribution          |            $T_i(x,t)$             | the distribution of traits at population $i$ as a function of time. here $T_i(x,t)$ is a probability density function over $x \in [0,1]$  for any given population $i$. |
+|          Bioenergetic Model          | $$\frac{\partial B}{\partial t}$$ | describes the flow of energy stored as biomass on a food web |
+|         Likelihood Function          |  $\mathbb{L}(\hat{x} | \theta)$   | a mapping from a combination of  state and parameter values to a probability of that combination occurring under some model $f$ |
+|        Posterior Distribution        |       $P(\theta | \hat{x})$       | the probability distribution of a parameter $\theta$ given some data $\hat{x}$ and a prior $P(\theta)$ |
+|          Prior Distribution          |            $P(\theta)$            | an a priori estimate of the distribution of a parameter $\theta$ |
+|              Parameters              |             $\theta$              | the parameters of any given model $f$                        |
+|               Metaweb                |                $M$                | a network of possible interactions between species, typically represented as an adjacency matrix |
+|                                      |                                   |                                                              |
+|                                      |                                   |                                                              |
+|            Biomass Vector            |             $\vec{B}$             |                                                              |
+|      Biomass vector observation      |             $\hat{B}$             |                                                              |
+| Community Structure Summary Function |           $C(\hat{B})$            |                                                              |
+|     Habitat Suitability Function     |           $H_i(L_j,t)$            | the habitat suitability of species $i$ and locations $L_j$ at time $t$ |
+|            Set of species            |           $\mathbb{S}$            |                                                              |
+|             Time domain              |              $\tau$               |                                                              |
+|                                      |                                   |                                                              |
 
 
 
