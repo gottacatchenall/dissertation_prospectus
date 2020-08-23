@@ -744,15 +744,15 @@ Every instance of a model $\hat{A}$ takes in parameters $\theta$ and inputs $\ha
 \subsubsection{Describing Metacommunity Dynamics}
 \label{finding-the-pseudoequilibria-of-our-metacommunity-model}}
 
-For any given instance of a model $\hat{A}$, one can then simulate the dynamics of the community, at which point we have a sampled trajectory $B(t) \ \ \forall t \in \tau$ where $\tau$ is the simulation time domain. From this, we apply our summary statistic $C(B(t)) \ \ \forall t \in \tau$, and we have a trajectory in summary statistic space $\Omega$---see figure ref. After running our model for many replicates, we can compute a density over the state-space $\Omega$ which represents the proportion of time the model spent in that part of $\Omega$.
-One natural question is whether most models tend to converge to a small area of $\Omega$ and sit at equilibrium, or wander around state-space eternally (see Dissertation Outline --- Chapter 4).
+For any given instance of a model $\hat{A}$, one can then simulate the dynamics of the community, at which point we have a sampled trajectory $B(t) \ \ \forall t \in \tau$ where $\tau$ is the simulation time domain. From this, we apply our summary statistic $C(B(t)) \ \ \forall t \in \tau$, and we have a trajectory in summary statistic space $\Omega$---see figure \ref{fig:density}. After running our model for many replicates, we can compute a density over the state-space $\Omega$ which represents the proportion of time the model spent in that part of $\Omega$.
+One natural question is whether most models tend to converge to a small area of $\Omega$ and sit at equilibrium, or wander around state-space eternally.
 
 
 
 \begin{figure}[H]
 \centering
 \includegraphics{/home/michael/prospectus/figures/density_plot.png}
-\caption{A density over summary-statistic space $\Omega$, computer by averaging states across replicates. A density could be time-indexed, or averaged across all timesteps.}
+\caption{A density over summary-statistic space $\Omega$, computer by averaging states across replicates. A density could be time-indexed, or averaged across all timesteps.} \label{fig:density}
 \end{figure}
 
 \hypertarget{fitting-to-data-with-abc}{%
@@ -828,7 +828,7 @@ The third chapter will be use the model as a virtual laboratory to explore quest
 
 \begin{itemize}
     \item At what proportions of selection, dispersal, and drift so we move in-between Leibold et al.'s four paradigms?
-    \item At what spatial scales and temporal does community assembly shift from being driven by neutral to niche processes (see Figure \ref{fig:gonzalez2020}, borrowed from \cite{gonzalez_scaling-up_2020})?
+    \item At what spatial scales and temporal does community assembly shift from being driven by neutral to niche processes \cite{gravel_reconciling_2006} (see Figure \ref{fig:gonzalez2020}, borrowed from \cite{gonzalez_scaling-up_2020})?
     \item How does selection on biotic interactions (e.g. trait-matching) effect metacommunity structure and diversity?
     \item How does the dimensionality of trait-space effect the capacity for diversity in communities?
     \item What are different summary statistics used to measure $\alpha$, $\beta$, and $\gamma$-diversity in ecological networks, and how do they covary?
@@ -870,7 +870,7 @@ The fifth and final chapter will use the softwares cpaacities to interface with 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-At this point, the next steps are to review the relevant literature that I've not yet seen--much of the purpose for reviewing the literature earlier was to determine find the gaps in what I've read. I'm also going to start building the software and reviewing the data sources that are available. At this point, I'm most concerned about simulation time for these types of models getting computationally very expensive and slow. ABC requires many replicates to get a good description of the likelihood function, and doing crossvalidation requires fitting many times on subset of the data. Ideally fitting regressions to the likelihood function will speed this up and remain effective. Other concerns include if ABC is too sensitive to priors or typically provides results with poor fit. If so, parameter estimation for forecasting could be done using hierarchical models or something more well established in the literature.
+At this point, the next steps are to review the relevant literature that I've not yet seen---much of the purpose for reviewing the literature earlier was to determine find the gaps in what I've read. I'm also going to start building the software and looking into the data sources that are available. At this point, I'm most concerned about simulation time for these types of models getting computationally very expensive and slow. ABC requires many replicates to get a good description of the likelihood function, and doing crossvalidation requires fitting many times on subset of the data. Ideally fitting regressions to the likelihood function will speed this up and remain effective. Other concerns include if ABC is too sensitive to priors or typically provides results with poor fit. If so, parameter estimation for forecasting could be done using hierarchical models or something more well established in the literature.
 
 % ________________________________________________________________________
 %
